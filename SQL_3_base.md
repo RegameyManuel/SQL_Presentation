@@ -40,6 +40,46 @@ CREATE TABLE Categorie (
     id_categorie INT PRIMARY KEY, 
     nom_categorie VARCHAR(50)
 );
+
+
+-- Données pour la table `Client`
+
+INSERT INTO Client (id_client, nom, prenom, email) VALUES
+(1, 'Martin', 'Lucie', 'lucie.martin@example.com'),
+(2, 'Bernard', 'Julien', 'julien.bernard@example.com'),
+(3, 'Thomas', 'Émilie', 'emilie.thomas@example.com'),
+(4, 'Petit', 'Sophie', 'sophie.petit@example.com'),
+(5, 'Robert', 'Christophe', 'christophe.robert@example.com');
+
+
+-- Données pour la table `Categorie`
+
+INSERT INTO Categorie (id_categorie, nom_categorie) VALUES
+(1, 'Entrée'),
+(2, 'Plat principal'),
+(3, 'Dessert'),
+(4, 'Boisson');
+
+
+-- Données pour la table `Plat`
+
+INSERT INTO Plat (id_plat, nom_plat, id_categorie, prix) VALUES
+(1, 'Salade Niçoise', 1, 12.50),
+(2, 'Steak Frites', 2, 18.90),
+(3, 'Mousse au Chocolat', 3, 6.50),
+(4, 'Poulet Basquaise', 2, 16.50),
+(5, 'Tarte Tatin', 3, 8.00),
+(6, 'Limonade Maison', 4, 3.75);
+
+
+-- Données pour la table `Commande`
+
+INSERT INTO Commande (id_commande, id_client, date_commande, total) VALUES
+(1, 1, '2023-09-01', 45.90),
+(2, 2, '2023-09-02', 24.25),
+(3, 3, '2023-09-03', 19.75),
+(4, 4, '2023-09-04', 34.75),
+(5, 5, '2023-09-05', 22.50);
 ```
 
 
