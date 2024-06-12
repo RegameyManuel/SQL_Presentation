@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Pr&eacute;sentation du SQL</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="présentation-du-sql">Présentation du SQL</h1>
+<h2 id="histoire-du-sql">Histoire du SQL</h2>
+<p><strong>SQL (Structured Query Language)</strong> est un langage standardisé de gestion de base de données qui a été développé pour la première fois dans les années 1970 par IBM. Il a été conçu pour manipuler et récupérer des données stockées dans les systèmes de gestion de bases de données relationnelles. Le premier prototype, appelé SEQUEL (Structured English Query Language), a été développé pour le projet de système de gestion de bases de données relationnelles appelé System R chez IBM. Au fil du temps, le langage a été normalisé par l'ANSI et l'ISO, ce qui a conduit à sa large adoption dans l'industrie.</p>
+<h2 id="mysql-et-mariadb">MySQL et MariaDB</h2>
+<p><strong>MySQL</strong> est l'un des systèmes de gestion de bases de données relationnelles open source les plus populaires. Il a été créé par Michael Widenius (&quot;Monty&quot;) et David Axmark dans les années 1990. MySQL est célèbre pour sa rapidité, sa robustesse et sa facilité d'utilisation. Il est largement utilisé pour les applications web et est devenu une partie intégrante de la pile technologique LAMP (Linux, Apache, MySQL, PHP/Python/Perl).</p>
+<p><strong>MariaDB</strong> est open source et a été forké de MySQL en 2009 par les mêmes développeurs qui ont créé MySQL, après que MySQL a été acquis par Oracle Corporation. MariaDB est conçu pour être compatible avec MySQL, tout en offrant de nouvelles fonctionnalités, des performances améliorées et des fonctionnalités remplacées qui n'étaient pas disponibles dans les versions gratuites de MySQL.</p>
+<h2 id="fonctionnement-général">Fonctionnement Général</h2>
+<p>SQL fonctionne en analysant et en exécutant des instructions écrites dans le langage SQL. Ces instructions peuvent effectuer diverses tâches, telles que la création de tables, la mise à jour de données, la récupération de données, et la gestion des transactions. SQL utilise des déclarations pour définir des structures de données, des requêtes pour récupérer des données et des commandes pour gérer les données et les transactions.</p>
+<h2 id="moteurs-de-table-mysql">Moteurs de Table MySQL</h2>
+<p>MySQL utilise ce qu'on appelle des &quot;moteurs de stockage&quot; pour gérer la manière dont les données sont stockées, gérées et récupérées. Chaque moteur de stockage a ses propres propriétés, optimisations et utilisations spécifiques. Voici quelques-uns des moteurs les plus courants :</p>
+<ul>
+<li>
+<p><strong>MyISAM</strong> : C'était le moteur par défaut avant MySQL 5.5. Il est connu pour sa rapidité dans les opérations de lecture, mais il ne supporte pas les transactions ni la récupération après un crash.</p>
+</li>
+<li>
+<p><strong>InnoDB</strong> : C'est le moteur de stockage par défaut pour MySQL depuis la version 5.5. InnoDB supporte les transactions, la récupération après un crash et le verrouillage au niveau des lignes. Il est conçu pour maximiser la robustesse et l'intégrité des données.</p>
+</li>
+<li>
+<p><strong>Memory</strong> : Ce moteur stocke les données en mémoire, ce qui offre un accès très rapide. Cependant, les données sont perdues lorsque la base de données est arrêtée, car elles ne sont pas stockées de manière persistante.</p>
+</li>
+<li>
+<p><strong>Archive</strong> : Utilisé pour le stockage d'un grand nombre de données qui ne nécessitent pas de modification fréquente. Il est optimisé pour les insertions rapides et la compression des données.</p>
+</li>
+</ul>
+<p>Les moteurs de table de MySQL permettent aux utilisateurs de choisir la meilleure façon de stocker et de gérer leurs données en fonction de leurs besoins spécifiques, ce qui rend ce système extrêmement flexible et puissant pour une large gamme d'applications.</p>
+<h2 id="documentation-sql--guillemets-et-syntaxe">Documentation SQL : Guillemets et Syntaxe</h2>
+<h3 id="introduction">Introduction</h3>
+<p>En SQL, l'usage des guillemets simples ('), doubles (&quot;), et des accents graves (`) varie selon le système de gestion de base de données (SGBD) utilisé. Ces caractères sont utilisés pour identifier les éléments de la base de données, comme les noms de tables et de colonnes, et pour délimiter les chaînes de caractères.</p>
+<h3 id="guillemets-simples-">Guillemets simples ('')</h3>
+<ul>
+<li><strong>Usage :</strong> Utilisés pour délimiter les chaînes de caractères.</li>
+<li><strong>Exemple :</strong><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> utilisateurs <span class="hljs-keyword">WHERE</span> nom <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Dupont&#x27;</span>;
+</code></pre>
+</li>
+</ul>
+<h3 id="guillemets-doubles-">Guillemets doubles (&quot;&quot;)</h3>
+<ul>
+<li><strong>Usage :</strong> Selon le standard SQL, les guillemets doubles sont utilisés pour identifier les identifiants (noms de table, de colonne, etc.) qui ne respectent pas les conventions normales de nommage ou qui contiennent des caractères spéciaux.</li>
+<li><strong>Exemple :</strong><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> &quot;nomColonne&quot; <span class="hljs-keyword">FROM</span> &quot;maTable&quot; <span class="hljs-keyword">WHERE</span> &quot;nomColonne&quot; <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;valeur&#x27;</span>;
+</code></pre>
+</li>
+<li><strong>Remarque :</strong> Tous les SGBD ne suivent pas cette convention. Par exemple, MySQL utilise les guillemets doubles comme des guillemets simples pour délimiter les chaînes, à moins que le mode ANSI_QUOTES soit activé.</li>
+</ul>
+<h3 id="accents-graves-">Accents graves (`)</h3>
+<ul>
+<li><strong>Usage :</strong> Utilisés spécifiquement dans MySQL et quelques autres SGBD pour entourer les identifiants.</li>
+<li><strong>Exemple :</strong><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> `nomColonne` <span class="hljs-keyword">FROM</span> `maTable` <span class="hljs-keyword">WHERE</span> `nomColonne` <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;valeur&#x27;</span>;
+</code></pre>
+</li>
+<li><strong>Remarque :</strong> Cela permet de s'assurer que les mots réservés peuvent être utilisés comme noms de table ou de colonne sans provoquer d'erreurs.</li>
+</ul>
+<h3 id="règles-de-syntaxe-générale">Règles de syntaxe générale</h3>
+<ol>
+<li><strong>Sensibilité à la casse :</strong> SQL n'est pas sensible à la casse pour les mots-clés, mais le traitement des identifiants peut l'être selon le SGBD et la configuration du système d'exploitation sous-jacent.</li>
+<li><strong>Commentaires :</strong>
+<ul>
+<li>Commentaires sur une ligne : Utilisez <code>-- commentaire</code> ou <code># commentaire</code> (spécifique à MySQL).</li>
+<li>Commentaires sur plusieurs lignes : Utilisez <code>/* commentaire */</code>.</li>
+</ul>
+</li>
+<li><strong>Terminaison des instructions :</strong> Les instructions SQL doivent se terminer par un point-virgule (<code>;</code>), bien que certains outils et environnements puissent tolérer des instructions sans point-virgule en fin de requête.</li>
+<li><strong>Nommage des identifiants :</strong>
+<ul>
+<li>Ne doivent pas commencer par un chiffre, mais peuvent être numériques si délimités correctement.</li>
+<li>Ne doivent pas contenir d'espaces. Utilisez des underscores <code>_</code> comme séparateurs.</li>
+<li>Évitez d'utiliser des mots réservés du SQL, à moins qu'ils ne soient entourés par des guillemets appropriés.</li>
+</ul>
+</li>
+</ol>
+<h2 id="sql-concrètement">SQL concrètement</h2>
+<h3 id="1-création-de-la-base-de-données-et-des-tables">1. Création de la Base de Données et des Tables</h3>
+<pre><code class="language-sql"><span class="hljs-comment">-- Crée la base de données si elle n&#x27;existe pas et la sélectionne pour utilisation.</span>
+<span class="hljs-keyword">CREATE</span> DATABASE IF <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> restaurant;
+USE restaurant;
+
+<span class="hljs-comment">-- Crée la table Client.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Client (
+    id_client <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY, 
+    nom <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>), 
+    prenom <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>), 
+    email <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>)
+);
+
+<span class="hljs-comment">-- Crée la table Commande.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Commande (
+    id_commande <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY, 
+    id_client <span class="hljs-type">INT</span>, 
+    date_commande <span class="hljs-type">DATE</span>, 
+    total <span class="hljs-type">DECIMAL</span>(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>), 
+    <span class="hljs-keyword">FOREIGN</span> KEY (id_client) <span class="hljs-keyword">REFERENCES</span> Client(id_client)
+);
+
+<span class="hljs-comment">-- Crée la table Plat.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Plat (
+    id_plat <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY, 
+    nom_plat <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>), 
+    id_categorie <span class="hljs-type">INT</span>, 
+    prix <span class="hljs-type">DECIMAL</span>(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>), 
+    <span class="hljs-keyword">FOREIGN</span> KEY (id_categorie) <span class="hljs-keyword">REFERENCES</span> Categorie(id_categorie)
+);
+
+<span class="hljs-comment">-- Suppression puis recréation de la table Categorie.</span>
+<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> Categorie;
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Categorie (
+    id_categorie <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY, 
+    nom_categorie <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>)
+);
+
+
+<span class="hljs-comment">-- Données pour la table `Client`</span>
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Client (id_client, nom, prenom, email) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Martin&#x27;</span>, <span class="hljs-string">&#x27;Lucie&#x27;</span>, <span class="hljs-string">&#x27;lucie.martin@example.com&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Bernard&#x27;</span>, <span class="hljs-string">&#x27;Julien&#x27;</span>, <span class="hljs-string">&#x27;julien.bernard@example.com&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Thomas&#x27;</span>, <span class="hljs-string">&#x27;Émilie&#x27;</span>, <span class="hljs-string">&#x27;emilie.thomas@example.com&#x27;</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;Petit&#x27;</span>, <span class="hljs-string">&#x27;Sophie&#x27;</span>, <span class="hljs-string">&#x27;sophie.petit@example.com&#x27;</span>),
+(<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;Robert&#x27;</span>, <span class="hljs-string">&#x27;Christophe&#x27;</span>, <span class="hljs-string">&#x27;christophe.robert@example.com&#x27;</span>);
+
+
+<span class="hljs-comment">-- Données pour la table `Categorie`</span>
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Categorie (id_categorie, nom_categorie) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Entrée&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Plat principal&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Dessert&#x27;</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;Boisson&#x27;</span>);
+
+
+<span class="hljs-comment">-- Données pour la table `Plat`</span>
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Plat (id_plat, nom_plat, id_categorie, prix) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Salade Niçoise&#x27;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">12.50</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Steak Frites&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">18.90</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Mousse au Chocolat&#x27;</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6.50</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;Poulet Basquaise&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">16.50</span>),
+(<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;Tarte Tatin&#x27;</span>, <span class="hljs-number">3</span>, <span class="hljs-number">8.00</span>),
+(<span class="hljs-number">6</span>, <span class="hljs-string">&#x27;Limonade Maison&#x27;</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3.75</span>);
+
+
+<span class="hljs-comment">-- Données pour la table `Commande`</span>
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Commande (id_commande, id_client, date_commande, total) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;2023-09-01&#x27;</span>, <span class="hljs-number">45.90</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;2023-09-02&#x27;</span>, <span class="hljs-number">24.25</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-string">&#x27;2023-09-03&#x27;</span>, <span class="hljs-number">19.75</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-string">&#x27;2023-09-04&#x27;</span>, <span class="hljs-number">34.75</span>),
+(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-string">&#x27;2023-09-05&#x27;</span>, <span class="hljs-number">22.50</span>);
+</code></pre>
+<h3 id="2-requêtes-sql">2. Requêtes SQL</h3>
+<pre><code class="language-sql"><span class="hljs-comment">-- 1. Sélectionner toutes les colonnes de la table Client.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Client;
+
+<span class="hljs-comment">-- 2. Sélectionner le nom et l&#x27;email des clients dont le nom commence par &quot;A&quot;.</span>
+<span class="hljs-keyword">SELECT</span> nom, email <span class="hljs-keyword">FROM</span> Client <span class="hljs-keyword">WHERE</span> nom <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;A%&#x27;</span>;
+
+<span class="hljs-comment">-- 3. Sélectionner le nombre total de clients.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">AS</span> nombre_clients <span class="hljs-keyword">FROM</span> Client;
+
+<span class="hljs-comment">-- 4. Sélectionner le plat le moins cher.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Plat <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> prix LIMIT <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">-- 5. Sélectionner les plats dont le prix est supérieur à 10 euros et dans une catégorie spécifique.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Plat <span class="hljs-keyword">WHERE</span> prix <span class="hljs-operator">&gt;</span> <span class="hljs-number">10</span> <span class="hljs-keyword">AND</span> id_categorie <span class="hljs-operator">=</span> (<span class="hljs-keyword">SELECT</span> id_categorie <span class="hljs-keyword">FROM</span> Categorie <span class="hljs-keyword">WHERE</span> nom_categorie <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Plat principal&#x27;</span>);
+
+<span class="hljs-comment">-- 6. Sélectionner les commandes effectuées par un client donné (ID 1).</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Commande <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">-- 7. Sélectionner le montant total de toutes les commandes.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(total) <span class="hljs-keyword">AS</span> montant_total <span class="hljs-keyword">FROM</span> Commande;
+
+<span class="hljs-comment">-- 8. Mettre à jour le nom d&#x27;un client (ID 1).</span>
+<span class="hljs-keyword">UPDATE</span> Client <span class="hljs-keyword">SET</span> nom <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Nouveau Nom&#x27;</span> <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">-- 9. Insérer un nouveau plat dans la table Plat.</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Plat (nom_plat, prix, id_categorie) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;Nouveau Plat&#x27;</span>, <span class="hljs-number">15.99</span>, (<span class="hljs-keyword">SELECT</span> id_categorie <span class="hljs-keyword">FROM</span> Categorie <span class="hljs-keyword">WHERE</span> nom_categorie <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Entrée&#x27;</span>));
+
+<span class="hljs-comment">-- 10. Supprimer un plat de la table Plat (ID 1).</span>
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Plat <span class="hljs-keyword">WHERE</span> id_plat <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">-- 11. Sélectionner les plats en ordre décroissant de prix.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Plat <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> prix <span class="hljs-keyword">DESC</span>;
+
+<span class="hljs-comment">-- 12. Sélectionner les clients ayant passé une commande avec un montant supérieur à 50 euros.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> c.<span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Client c <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Commande cm <span class="hljs-keyword">ON</span> c.id_client <span class="hljs-operator">=</span> cm.id_client <span class="hljs-keyword">WHERE</span> cm.total <span class="hljs-operator">&gt;</span> <span class="hljs-number">50</span>;
+
+<span class="hljs-comment">-- 13. Sélectionner les plats avec leur catégorie respective.</span>
+<span class="hljs-keyword">SELECT</span> p.nom_plat <span class="hljs-keyword">AS</span> plat, c.nom_categorie <span class="hljs-keyword">AS</span> categorie <span class="hljs-keyword">FROM</span> Plat p <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Categorie c <span class="hljs-keyword">ON</span> p.id_categorie <span class="hljs-operator">=</span> c.id_categorie;
+
+<span class="hljs-comment">-- 14. Sélectionner les clients n&#x27;ayant jamais passé de commande.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Client <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> id_client <span class="hljs-keyword">FROM</span> Commande);
+
+<span class="hljs-comment">-- 15. Sélectionner les plats et leur nombre de commandes respectif, triés par nombre de commandes décroissant.</span>
+<span class="hljs-keyword">SELECT</span> p.nom_plat <span class="hljs-keyword">AS</span> plat, <span class="hljs-built_in">COUNT</span>(cm.id_commande) <span class="hljs-keyword">AS</span> nombre_commandes <span class="hljs-keyword">FROM</span> Plat p <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> Commande cm <span class="hljs-keyword">ON</span> p.id_plat <span class="hljs-operator">=</span> cm.id_plat <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> p.id_plat <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> nombre_commandes <span class="hljs-keyword">DESC</span>;
+</code></pre>
+<h2 id="sql-légèrement-avancé-">SQL (légèrement) avancé ...</h2>
+<h3 id="jointures-variées-inner-join-left-join-right-join-cross-join">Jointures Variées (INNER JOIN, LEFT JOIN, RIGHT JOIN, CROSS JOIN)</h3>
+<pre><code class="language-sql"><span class="hljs-comment">-- INNER JOIN récupère les enregistrements correspondants dans les deux tables.</span>
+<span class="hljs-keyword">SELECT</span> Client.nom, Commande.date_commande
+<span class="hljs-keyword">FROM</span> Client
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Commande <span class="hljs-keyword">ON</span> Client.id_client <span class="hljs-operator">=</span> Commande.id_client;
+
+<span class="hljs-comment">-- LEFT JOIN inclut tous les enregistrements de la table de gauche et les correspondants de la table de droite.</span>
+<span class="hljs-keyword">SELECT</span> Client.nom, Commande.date_commande
+<span class="hljs-keyword">FROM</span> Client
+<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> Commande <span class="hljs-keyword">ON</span> Client.id_client <span class="hljs-operator">=</span> Commande.id_client;
+
+<span class="hljs-comment">-- RIGHT JOIN n&#x27;est pas supporté dans toutes les bases de données, donc vérifiez la compatibilité.</span>
+<span class="hljs-comment">-- Elle inclut tous les enregistrements de la table de droite et les correspondants de la table de gauche.</span>
+<span class="hljs-comment">-- Si votre système de gestion de base de données ne supporte pas RIGHT JOIN, utilisez LEFT JOIN avec l&#x27;ordre des tables inversé.</span>
+<span class="hljs-keyword">SELECT</span> Commande.date_commande, Client.nom
+<span class="hljs-keyword">FROM</span> Commande
+<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> Client <span class="hljs-keyword">ON</span> Commande.id_client <span class="hljs-operator">=</span> Client.id_client;
+
+<span class="hljs-comment">-- CROSS JOIN produit le produit cartésien des deux tables.</span>
+<span class="hljs-keyword">SELECT</span> Client.nom, Plat.nom_plat
+<span class="hljs-keyword">FROM</span> Client
+<span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> Plat;
+</code></pre>
+<h3 id="fonctions-sql-avancées-group-by-having-distinct">Fonctions SQL Avancées (GROUP BY, HAVING, DISTINCT)</h3>
+<pre><code class="language-sql"><span class="hljs-comment">-- Utilisation de GROUP BY avec HAVING pour filtrer les résultats.</span>
+<span class="hljs-keyword">SELECT</span> Categorie.nom_categorie, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">AS</span> Nombre_Plats
+<span class="hljs-keyword">FROM</span> Plat
+<span class="hljs-keyword">JOIN</span> Categorie <span class="hljs-keyword">ON</span> Plat.id_categorie <span class="hljs-operator">=</span> Categorie.id_categorie
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Categorie.nom_categorie
+<span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span>;
+
+<span class="hljs-comment">-- Utilisation de DISTINCT pour éviter les doublons.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> Client.prenom
+<span class="hljs-keyword">FROM</span> Client;
+</code></pre>
+<h3 id="fonctions-de-date-et-dheure">Fonctions de Date et d'Heure</h3>
+<pre><code class="language-sql"><span class="hljs-comment">-- Extrait l&#x27;année de la date de commande.</span>
+<span class="hljs-keyword">SELECT</span> id_commande, <span class="hljs-keyword">YEAR</span>(date_commande) <span class="hljs-keyword">AS</span> Annee_Commande
+<span class="hljs-keyword">FROM</span> Commande;
+
+<span class="hljs-comment">-- Calcule la différence en jours entre deux dates.</span>
+<span class="hljs-keyword">SELECT</span> DATEDIFF(CURDATE(), date_commande) <span class="hljs-keyword">AS</span> Jours_Depuis_Commande
+<span class="hljs-keyword">FROM</span> Commande;
+</code></pre>
+<h3 id="utilisation-de-fonctions-daggrégation-sum-avg-min-max">Utilisation de Fonctions d'Aggrégation (SUM, AVG, MIN, MAX)</h3>
+<pre><code class="language-sql"><span class="hljs-comment">-- Calcule le total des ventes, la commande moyenne, le montant maximum et minimum des commandes.</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(total) <span class="hljs-keyword">AS</span> Total_Ventes, <span class="hljs-built_in">AVG</span>(total) <span class="hljs-keyword">AS</span> Moyenne_Commande, <span class="hljs-built_in">MIN</span>(total) <span class="hljs-keyword">AS</span> Commande_Min, <span class="hljs-built_in">MAX</span>(total) <span class="hljs-keyword">AS</span> Commande_Max
+<span class="hljs-keyword">FROM</span> Commande;
+</code></pre>
+<h3 id="sous-requêtes-et-opérations-sur-les-sets-in-not-in-exists">Sous-requêtes et Opérations sur les Sets (IN, NOT IN, EXISTS)</h3>
+<pre><code class="language-sql"><span class="hljs-comment">-- Utilise IN pour sélectionner les clients ayant passé une commande de plus de 100 euros.</span>
+<span class="hljs-keyword">SELECT</span> nom, prenom <span class="hljs-keyword">FROM</span> Client
+<span class="hljs-keyword">WHERE</span> id_client <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> id_client <span class="hljs-keyword">FROM</span> Commande <span class="hljs-keyword">WHERE</span> total <span class="hljs-operator">&gt;</span> <span class="hljs-number">100</span>);
+
+<span class="hljs-comment">-- Utilise EXISTS pour vérifier l&#x27;existence de certaines commandes.</span>
+<span class="hljs-keyword">SELECT</span> nom <span class="hljs-keyword">FROM</span> Client c
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">EXISTS</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span> <span class="hljs-keyword">FROM</span> Commande co <span class="hljs-keyword">WHERE</span> co.id_client <span class="hljs-operator">=</span> c.id_client <span class="hljs-keyword">AND</span> total <span class="hljs-operator">&gt;</span> <span class="hljs-number">150</span>);
+</code></pre>
+<h3 id="insertions-mises-à-jour-et-suppressions-de-données">Insertions, Mises à jour, et Suppressions de données</h3>
+<pre><code class="language-sql"><span class="hljs-comment">-- Insertion d&#x27;un nouveau client.</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Client (id_client, nom, prenom, email) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">101</span>, <span class="hljs-string">&#x27;Dupont&#x27;</span>, <span class="hljs-string">&#x27;Jean&#x27;</span>, <span class="hljs-string">&#x27;jean.dupont@example.com&#x27;</span>);
+
+<span class="hljs-comment">-- Mise à jour de l&#x27;email d&#x27;un client.</span>
+<span class="hljs-keyword">UPDATE</span> Client <span class="hljs-keyword">SET</span> email <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;nouveau.email@example.com&#x27;</span> <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-operator">=</span> <span class="hljs-number">101</span>;
+
+<span class="hljs-comment">-- Suppression d&#x27;un client.</span>
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Client <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-operator">=</span> <span class="hljs-number">101</span>;
+</code></pre>
+<h3 id="transactions-start-transaction-commit-rollback">Transactions (START TRANSACTION, COMMIT, ROLLBACK)</h3>
+<p>Les transactions en SQL sont des séquences d'opérations de gestion de base de données qui sont traitées de manière logique et indivisible. Elles sont essentielles pour maintenir l'intégrité des données, en particulier dans les environnements où plusieurs utilisateurs ou applications accèdent et modifient simultanément la base de données. Une transaction en SQL commence par une commande de démarrage et se termine par un commit ou un rollback.</p>
+<h4 id="principe-des-transactions">Principe des Transactions</h4>
+<ol>
+<li>
+<p><strong>Atomicité</strong> : Chaque transaction est atomique, ce qui signifie qu'elle est indivisible. Toutes les opérations au sein de la transaction sont effectuées avec succès, ou aucune n'est appliquée. Si une opération échoue, toutes les modifications précédentes dans la transaction sont annulées (rollback).</p>
+</li>
+<li>
+<p><strong>Cohérence</strong> : Une transaction transforme la base de données d'un état valide à un autre état valide, en préservant l'intégrité des données. Toutes les règles d'intégrité doivent être respectées.</p>
+</li>
+<li>
+<p><strong>Isolation</strong> : Chaque transaction doit être isolée des autres transactions. Les modifications effectuées dans une transaction ne doivent pas être visibles par les autres transactions avant que la transaction ne soit terminée (commit).</p>
+</li>
+<li>
+<p><strong>Durabilité</strong> : Une fois qu'une transaction a été validée (commit), les modifications qu'elle a introduites dans la base de données doivent être permanentes, même en cas de panne du système.</p>
+</li>
+</ol>
+<h4 id="exemple-de-transaction-en-sql">Exemple de Transaction en SQL</h4>
+<p>Pour illustrer comment les transactions fonctionnent en pratique, imaginons une base de données de gestion de comptes bancaires où les transactions sont cruciales pour assurer que tous les transferts de fonds sont effectués de manière sécurisée et cohérente.</p>
+<pre><code class="language-sql"><span class="hljs-comment">-- Démarrage de la transaction</span>
+<span class="hljs-keyword">START</span> TRANSACTION;
+
+<span class="hljs-comment">-- Tentative de transfert de 100 euros du compte 001 vers le compte 002</span>
+<span class="hljs-comment">-- Débit du compte 001</span>
+<span class="hljs-keyword">UPDATE</span> Comptes <span class="hljs-keyword">SET</span> solde <span class="hljs-operator">=</span> solde <span class="hljs-operator">-</span> <span class="hljs-number">100</span> <span class="hljs-keyword">WHERE</span> numero_compte <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;001&#x27;</span>;
+
+<span class="hljs-comment">-- Crédit du compte 002</span>
+<span class="hljs-keyword">UPDATE</span> Comptes <span class="hljs-keyword">SET</span> solde <span class="hljs-operator">=</span> solde <span class="hljs-operator">+</span> <span class="hljs-number">100</span> <span class="hljs-keyword">WHERE</span> numero_compte <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;002&#x27;</span>;
+
+<span class="hljs-comment">-- Vérification que le compte débiteur a suffisamment de fonds (ne doit pas être négatif)</span>
+<span class="hljs-keyword">SELECT</span> solde <span class="hljs-keyword">INTO</span> <span class="hljs-variable">@solde</span> <span class="hljs-keyword">FROM</span> Comptes <span class="hljs-keyword">WHERE</span> numero_compte <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;001&#x27;</span>;
+IF <span class="hljs-variable">@solde</span> <span class="hljs-operator">&lt;</span> <span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span>
+    <span class="hljs-comment">-- Si le solde est insuffisant, annulation de la transaction</span>
+    <span class="hljs-keyword">ROLLBACK</span>;
+<span class="hljs-keyword">ELSE</span>
+    <span class="hljs-comment">-- Si tout est en règle, validation de la transaction</span>
+    <span class="hljs-keyword">COMMIT</span>;
+<span class="hljs-keyword">END</span> IF;
+</code></pre>
+<h4 id="commentaires-sur-lexemple">Commentaires sur l'Exemple</h4>
+<ul>
+<li>
+<p><strong>START TRANSACTION</strong> démarre la transaction.</p>
+</li>
+<li>
+<p>Les commandes <strong>UPDATE</strong> sont utilisées pour transférer les fonds entre les comptes.</p>
+</li>
+<li>
+<p>La commande <strong>SELECT INTO</strong> récupère le solde après le débit pour vérifier si le compte ne passe pas en négatif.</p>
+</li>
+<li>
+<p><strong>IF</strong> permet de tester si le solde est inférieur à zéro. Si c'est le cas, la transaction est annulée avec <strong>ROLLBACK</strong>; sinon, elle est validée avec <strong>COMMIT</strong>.</p>
+</li>
+<li>
+<p><strong>ROLLBACK</strong> annule toutes les modifications effectuées dans la transaction.</p>
+</li>
+<li>
+<p><strong>COMMIT</strong> applique toutes les modifications de manière permanente dans la base de données.</p>
+</li>
+<li>
+<p><strong>@solde</strong> cré une variable</p>
+<ol>
+<li>Portée et Durée de vie : Les variables utilisateur comme @solde ont une portée limitée à la session dans laquelle elles sont définies. Elles perdent leur valeur une fois la session terminée.</li>
+<li>Sécurité des transactions : L'utilisation de cette variable dans le contexte d'une transaction bancaire est cruciale pour assurer l'intégrité des opérations financières et prévenir les erreurs telles que les découverts non autorisés.</li>
+</ol>
+</li>
+</ul>
+<p>Cet exemple montre l'utilisation essentielle des transactions pour gérer des opérations financières complexes de manière sécurisée et fiable, garantissant ainsi l'intégrité et la cohérence des données dans des systèmes transactionnels critiques.</p>
+
+            
+            
+        </body>
+        </html>
