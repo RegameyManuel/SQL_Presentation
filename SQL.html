@@ -1,467 +1,1548 @@
 <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>Pr&eacute;sentation du SQL</title>
-            <style>
-/* From extension vscode.github */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-.vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
-	display: none;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SQL Présentation</title>
+  <style>
+  @font-face {
+  font-family: octicons-link;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
 }
 
-</style>
-            
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
-<style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-        </style>
-        <style>
-.task-list-item {
-    list-style-type: none;
-}
-
-.task-list-item-checkbox {
-    margin-left: -20px;
-    vertical-align: middle;
-    pointer-events: none;
-}
-</style>
-<style>
-:root {
-  --color-note: #0969da;
-  --color-tip: #1a7f37;
-  --color-warning: #9a6700;
-  --color-severe: #bc4c00;
-  --color-caution: #d1242f;
-  --color-important: #8250df;
-}
-
-</style>
-<style>
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-note: #2f81f7;
-    --color-tip: #3fb950;
-    --color-warning: #d29922;
-    --color-severe: #db6d28;
-    --color-caution: #f85149;
-    --color-important: #a371f7;
-  }
-}
-
-</style>
-<style>
-.markdown-alert {
-  padding: 0.5rem 1rem;
-  margin-bottom: 16px;
-  color: inherit;
-  border-left: .25em solid #888;
-}
-
-.markdown-alert>:first-child {
-  margin-top: 0
-}
-
-.markdown-alert>:last-child {
-  margin-bottom: 0
-}
-
-.markdown-alert .markdown-alert-title {
-  display: flex;
-  font-weight: 500;
-  align-items: center;
-  line-height: 1
-}
-
-.markdown-alert .markdown-alert-title .octicon {
-  margin-right: 0.5rem;
+.markdown-body .octicon {
   display: inline-block;
-  overflow: visible !important;
-  vertical-align: text-bottom;
   fill: currentColor;
+  vertical-align: text-bottom;
 }
 
-.markdown-alert.markdown-alert-note {
-  border-left-color: var(--color-note);
+.markdown-body .anchor {
+  float: left;
+  line-height: 1;
+  margin-left: -20px;
+  padding-right: 4px;
 }
 
-.markdown-alert.markdown-alert-note .markdown-alert-title {
-  color: var(--color-note);
+.markdown-body .anchor:focus {
+  outline: none;
 }
 
-.markdown-alert.markdown-alert-important {
-  border-left-color: var(--color-important);
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
 }
 
-.markdown-alert.markdown-alert-important .markdown-alert-title {
-  color: var(--color-important);
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
 }
 
-.markdown-alert.markdown-alert-warning {
-  border-left-color: var(--color-warning);
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
 }
 
-.markdown-alert.markdown-alert-warning .markdown-alert-title {
-  color: var(--color-warning);
+.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #24292e;
+  line-height: 1.5;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
 }
 
-.markdown-alert.markdown-alert-tip {
-  border-left-color: var(--color-tip);
+.markdown-body .pl-c {
+  color: #6a737d;
 }
 
-.markdown-alert.markdown-alert-tip .markdown-alert-title {
-  color: var(--color-tip);
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+  color: #005cc5;
 }
 
-.markdown-alert.markdown-alert-caution {
-  border-left-color: var(--color-caution);
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+  color: #6f42c1;
 }
 
-.markdown-alert.markdown-alert-caution .markdown-alert-title {
-  color: var(--color-caution);
+.markdown-body .pl-s .pl-s1,
+.markdown-body .pl-smi {
+  color: #24292e;
 }
 
-</style>
-        
-        </head>
-        <body class="vscode-body vscode-light">
-            <h1 id="présentation-du-sql">Présentation du SQL</h1>
-<h2 id="histoire-du-sql">Histoire du SQL</h2>
+.markdown-body .pl-ent {
+  color: #22863a;
+}
+
+.markdown-body .pl-k {
+  color: #d73a49;
+}
+
+.markdown-body .pl-pds,
+.markdown-body .pl-s,
+.markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr,
+.markdown-body .pl-sr .pl-cce,
+.markdown-body .pl-sr .pl-sra,
+.markdown-body .pl-sr .pl-sre {
+  color: #032f62;
+}
+
+.markdown-body .pl-smw,
+.markdown-body .pl-v {
+  color: #e36209;
+}
+
+.markdown-body .pl-bu {
+  color: #b31d28;
+}
+
+.markdown-body .pl-ii {
+  background-color: #b31d28;
+  color: #fafbfc;
+}
+
+.markdown-body .pl-c2 {
+  background-color: #d73a49;
+  color: #fafbfc;
+}
+
+.markdown-body .pl-c2:before {
+  content: "^M";
+}
+
+.markdown-body .pl-sr .pl-cce {
+  color: #22863a;
+  font-weight: 700;
+}
+
+.markdown-body .pl-ml {
+  color: #735c0f;
+}
+
+.markdown-body .pl-mh,
+.markdown-body .pl-mh .pl-en,
+.markdown-body .pl-ms {
+  color: #005cc5;
+  font-weight: 700;
+}
+
+.markdown-body .pl-mi {
+  color: #24292e;
+  font-style: italic;
+}
+
+.markdown-body .pl-mb {
+  color: #24292e;
+  font-weight: 700;
+}
+
+.markdown-body .pl-md {
+  background-color: #ffeef0;
+  color: #b31d28;
+}
+
+.markdown-body .pl-mi1 {
+  background-color: #f0fff4;
+  color: #22863a;
+}
+
+.markdown-body .pl-mc {
+  background-color: #ffebda;
+  color: #e36209;
+}
+
+.markdown-body .pl-mi2 {
+  background-color: #005cc5;
+  color: #f6f8fa;
+}
+
+.markdown-body .pl-mdr {
+  color: #6f42c1;
+  font-weight: 700;
+}
+
+.markdown-body .pl-ba {
+  color: #586069;
+}
+
+.markdown-body .pl-sg {
+  color: #959da5;
+}
+
+.markdown-body .pl-corl {
+  color: #032f62;
+  text-decoration: underline;
+}
+
+.markdown-body details {
+  display: block;
+}
+
+.markdown-body summary {
+  display: list-item;
+}
+
+.markdown-body a {
+  background-color: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline-width: 0;
+}
+
+.markdown-body strong {
+  font-weight: inherit;
+  font-weight: bolder;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: .67em 0;
+}
+
+.markdown-body img {
+  border-style: none;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+
+.markdown-body hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+.markdown-body input {
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body input {
+  overflow: visible;
+}
+
+.markdown-body [type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body * {
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.markdown-body a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body strong {
+  font-weight: 600;
+}
+
+.markdown-body hr {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.markdown-body hr:before {
+  content: "";
+  display: table;
+}
+
+.markdown-body hr:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body details summary {
+  cursor: pointer;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.markdown-body h1 {
+  font-size: 32px;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+  font-weight: 600;
+}
+
+.markdown-body h2 {
+  font-size: 24px;
+}
+
+.markdown-body h3 {
+  font-size: 20px;
+}
+
+.markdown-body h3,
+.markdown-body h4 {
+  font-weight: 600;
+}
+
+.markdown-body h4 {
+  font-size: 16px;
+}
+
+.markdown-body h5 {
+  font-size: 14px;
+}
+
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 600;
+}
+
+.markdown-body h6 {
+  font-size: 12px;
+}
+
+.markdown-body p {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ol,
+.markdown-body ul {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ol ol ol,
+.markdown-body ol ul ol,
+.markdown-body ul ol ol,
+.markdown-body ul ul ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.markdown-body input::-webkit-inner-spin-button,
+.markdown-body input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.markdown-body .border {
+  border: 1px solid #e1e4e8!important;
+}
+
+.markdown-body .border-0 {
+  border: 0!important;
+}
+
+.markdown-body .border-bottom {
+  border-bottom: 1px solid #e1e4e8!important;
+}
+
+.markdown-body .rounded-1 {
+  border-radius: 3px!important;
+}
+
+.markdown-body .bg-white {
+  background-color: #fff!important;
+}
+
+.markdown-body .bg-gray-light {
+  background-color: #fafbfc!important;
+}
+
+.markdown-body .text-gray-light {
+  color: #6a737d!important;
+}
+
+.markdown-body .mb-0 {
+  margin-bottom: 0!important;
+}
+
+.markdown-body .my-2 {
+  margin-bottom: 8px!important;
+  margin-top: 8px!important;
+}
+
+.markdown-body .pl-0 {
+  padding-left: 0!important;
+}
+
+.markdown-body .py-0 {
+  padding-bottom: 0!important;
+  padding-top: 0!important;
+}
+
+.markdown-body .pl-1 {
+  padding-left: 4px!important;
+}
+
+.markdown-body .pl-2 {
+  padding-left: 8px!important;
+}
+
+.markdown-body .py-2 {
+  padding-bottom: 8px!important;
+  padding-top: 8px!important;
+}
+
+.markdown-body .pl-3,
+.markdown-body .px-3 {
+  padding-left: 16px!important;
+}
+
+.markdown-body .px-3 {
+  padding-right: 16px!important;
+}
+
+.markdown-body .pl-4 {
+  padding-left: 24px!important;
+}
+
+.markdown-body .pl-5 {
+  padding-left: 32px!important;
+}
+
+.markdown-body .pl-6 {
+  padding-left: 40px!important;
+}
+
+.markdown-body .f6 {
+  font-size: 12px!important;
+}
+
+.markdown-body .lh-condensed {
+  line-height: 1.25!important;
+}
+
+.markdown-body .text-bold {
+  font-weight: 600!important;
+}
+
+.markdown-body:before {
+  content: "";
+  display: table;
+}
+
+.markdown-body:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.markdown-body>:first-child {
+  margin-top: 0!important;
+}
+
+.markdown-body>:last-child {
+  margin-bottom: 0!important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body blockquote,
+.markdown-body dl,
+.markdown-body ol,
+.markdown-body p,
+.markdown-body pre,
+.markdown-body table,
+.markdown-body ul {
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.markdown-body hr {
+  background-color: #e1e4e8;
+  border: 0;
+  height: .25em;
+  margin: 24px 0;
+  padding: 0;
+}
+
+.markdown-body blockquote {
+  border-left: .25em solid #dfe2e5;
+  color: #6a737d;
+  padding: 0 1em;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #fafbfc;
+  border: 1px solid #c6cbd1;
+  border-bottom-color: #959da5;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #959da5;
+  color: #444d56;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 10px;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: .3em;
+}
+
+.markdown-body h2 {
+  font-size: 1.5em;
+}
+
+.markdown-body h3 {
+  font-size: 1.25em;
+}
+
+.markdown-body h4 {
+  font-size: 1em;
+}
+
+.markdown-body h5 {
+  font-size: .875em;
+}
+
+.markdown-body h6 {
+  color: #6a737d;
+  font-size: .85em;
+}
+
+.markdown-body ol,
+.markdown-body ul {
+  padding-left: 2em;
+}
+
+.markdown-body ol ol,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ul ul {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.markdown-body li {
+  word-wrap: break-all;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body li+li {
+  margin-top: .25em;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+  margin-top: 16px;
+  padding: 0;
+}
+
+.markdown-body dl dd {
+  margin-bottom: 16px;
+  padding: 0 16px;
+}
+
+.markdown-body table {
+  display: block;
+  overflow: auto;
+  width: 100%;
+}
+
+.markdown-body table th {
+  font-weight: 600;
+}
+
+.markdown-body table td,
+.markdown-body table th {
+  border: 1px solid #dfe2e5;
+  padding: 6px 13px;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.markdown-body img {
+  background-color: #fff;
+  box-sizing: content-box;
+  max-width: 100%;
+}
+
+.markdown-body img[align=right] {
+  padding-left: 20px;
+}
+
+.markdown-body img[align=left] {
+  padding-right: 20px;
+}
+
+.markdown-body code {
+  background-color: rgba(27,31,35,.05);
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: .2em .4em;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre>code {
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  word-break: normal;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  font-size: 85%;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 16px;
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  border: 0;
+  display: inline;
+  line-height: inherit;
+  margin: 0;
+  max-width: auto;
+  overflow: visible;
+  padding: 0;
+  word-wrap: normal;
+}
+
+.markdown-body .commit-tease-sha {
+  color: #444d56;
+  display: inline-block;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 90%;
+}
+
+.markdown-body .blob-wrapper {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.markdown-body .blob-wrapper-embedded {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.markdown-body .blob-num {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  color: rgba(27,31,35,.3);
+  cursor: pointer;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+  line-height: 20px;
+  min-width: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: right;
+  user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 1%;
+}
+
+.markdown-body .blob-num:hover {
+  color: rgba(27,31,35,.6);
+}
+
+.markdown-body .blob-num:before {
+  content: attr(data-line-number);
+}
+
+.markdown-body .blob-code {
+  line-height: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  vertical-align: top;
+}
+
+.markdown-body .blob-code-inner {
+  color: #24292e;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+  overflow: visible;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+.markdown-body .pl-token.active,
+.markdown-body .pl-token:hover {
+  background: #ffea7f;
+  cursor: pointer;
+}
+
+.markdown-body kbd {
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-bottom-color: #c6cbd1;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #c6cbd1;
+  color: #444d56;
+  display: inline-block;
+  font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  line-height: 10px;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+.markdown-body :checked+.radio-label {
+  border-color: #0366d6;
+  position: relative;
+  z-index: 1;
+}
+
+.markdown-body .tab-size[data-tab-size="1"] {
+  -moz-tab-size: 1;
+  tab-size: 1;
+}
+
+.markdown-body .tab-size[data-tab-size="2"] {
+  -moz-tab-size: 2;
+  tab-size: 2;
+}
+
+.markdown-body .tab-size[data-tab-size="3"] {
+  -moz-tab-size: 3;
+  tab-size: 3;
+}
+
+.markdown-body .tab-size[data-tab-size="4"] {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+.markdown-body .tab-size[data-tab-size="5"] {
+  -moz-tab-size: 5;
+  tab-size: 5;
+}
+
+.markdown-body .tab-size[data-tab-size="6"] {
+  -moz-tab-size: 6;
+  tab-size: 6;
+}
+
+.markdown-body .tab-size[data-tab-size="7"] {
+  -moz-tab-size: 7;
+  tab-size: 7;
+}
+
+.markdown-body .tab-size[data-tab-size="8"] {
+  -moz-tab-size: 8;
+  tab-size: 8;
+}
+
+.markdown-body .tab-size[data-tab-size="9"] {
+  -moz-tab-size: 9;
+  tab-size: 9;
+}
+
+.markdown-body .tab-size[data-tab-size="10"] {
+  -moz-tab-size: 10;
+  tab-size: 10;
+}
+
+.markdown-body .tab-size[data-tab-size="11"] {
+  -moz-tab-size: 11;
+  tab-size: 11;
+}
+
+.markdown-body .tab-size[data-tab-size="12"] {
+  -moz-tab-size: 12;
+  tab-size: 12;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 .2em .25em -1.6em;
+  vertical-align: middle;
+}
+
+.markdown-body hr {
+  border-bottom-color: #eee;
+}
+
+.markdown-body .pl-0 {
+  padding-left: 0!important;
+}
+
+.markdown-body .pl-1 {
+  padding-left: 4px!important;
+}
+
+.markdown-body .pl-2 {
+  padding-left: 8px!important;
+}
+
+.markdown-body .pl-3 {
+  padding-left: 16px!important;
+}
+
+.markdown-body .pl-4 {
+  padding-left: 24px!important;
+}
+
+.markdown-body .pl-5 {
+  padding-left: 32px!important;
+}
+
+.markdown-body .pl-6 {
+  padding-left: 40px!important;
+}
+
+.markdown-body .pl-7 {
+  padding-left: 48px!important;
+}
+
+.markdown-body .pl-8 {
+  padding-left: 64px!important;
+}
+
+.markdown-body .pl-9 {
+  padding-left: 80px!important;
+}
+
+.markdown-body .pl-10 {
+  padding-left: 96px!important;
+}
+
+.markdown-body .pl-11 {
+  padding-left: 112px!important;
+}
+
+.markdown-body .pl-12 {
+  padding-left: 128px!important;
+}
+
+/*# sourceURL=webpack://./node_modules/github-markdown-css/github-markdown.css */
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL25vZGVfbW9kdWxlcy9naXRodWItbWFya2Rvd24tY3NzL2dpdGh1Yi1tYXJrZG93bi5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSwwQkFBMEI7RUFDMUIsMkRBQXF0RTtBQUN2dEU7O0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsa0JBQWtCO0VBQ2xCLDJCQUEyQjtBQUM3Qjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxjQUFjO0VBQ2Qsa0JBQWtCO0VBQ2xCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTs7Ozs7O0VBTUUsY0FBYztFQUNkLHNCQUFzQjtFQUN0QixrQkFBa0I7QUFDcEI7O0FBRUE7Ozs7OztFQU1FLHFCQUFxQjtBQUN2Qjs7QUFFQTs7Ozs7O0VBTUUsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsMEJBQTBCO0VBQzFCLDhCQUE4QjtFQUM5QixjQUFjO0VBQ2QsZ0JBQWdCO0VBQ2hCLGtJQUFrSTtFQUNsSSxlQUFlO0VBQ2YsZ0JBQWdCO0VBQ2hCLHFCQUFxQjtBQUN2Qjs7QUFFQTtFQUNFLGNBQWM7QUFDaEI7O0FBRUE7O0VBRUUsY0FBYztBQUNoQjs7QUFFQTs7RUFFRSxjQUFjO0FBQ2hCOztBQUVBOztFQUVFLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTs7Ozs7OztFQU9FLGNBQWM7QUFDaEI7O0FBRUE7O0VBRUUsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLHlCQUF5QjtFQUN6QixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0UsY0FBYztFQUNkLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLGNBQWM7QUFDaEI7O0FBRUE7OztFQUdFLGNBQWM7RUFDZCxnQkFBZ0I7QUFDbEI7O0FBRUE7RUFD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 */
+  </style>
+  <style>
+  /**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #9a6e3a;
+	/* This background color was intended by the author of this theme. */
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function,
+.token.class-name {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+/*# sourceURL=webpack://./node_modules/prismjs/themes/prism.css */
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL25vZGVfbW9kdWxlcy9wcmlzbWpzL3RoZW1lcy9wcmlzbS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7RUFJRTs7QUFFRjs7Q0FFQyxZQUFZO0NBQ1osZ0JBQWdCO0NBQ2hCLHdCQUF3QjtDQUN4QixzRUFBc0U7Q0FDdEUsY0FBYztDQUNkLGdCQUFnQjtDQUNoQixnQkFBZ0I7Q0FDaEIsb0JBQW9CO0NBQ3BCLGtCQUFrQjtDQUNsQixpQkFBaUI7Q0FDakIsZ0JBQWdCOztDQUVoQixnQkFBZ0I7Q0FDaEIsY0FBYztDQUNkLFdBQVc7O0NBRVgscUJBQXFCO0NBQ3JCLGtCQUFrQjtDQUNsQixpQkFBaUI7Q0FDakIsYUFBYTtBQUNkOztBQUVBOztDQUVDLGlCQUFpQjtDQUNqQixtQkFBbUI7QUFDcEI7O0FBRUE7O0NBRUMsaUJBQWlCO0NBQ2pCLG1CQUFtQjtBQUNwQjs7QUFFQTtDQUNDOztFQUVDLGlCQUFpQjtDQUNsQjtBQUNEOztBQUVBLGdCQUFnQjtBQUNoQjtDQUNDLFlBQVk7Q0FDWixjQUFjO0NBQ2QsY0FBYztBQUNmOztBQUVBOztDQUVDLG1CQUFtQjtBQUNwQjs7QUFFQSxnQkFBZ0I7QUFDaEI7Q0FDQyxhQUFhO0NBQ2IsbUJBQW1CO0NBQ25CLG1CQUFtQjtBQUNwQjs7QUFFQTs7OztDQUlDLGdCQUFnQjtBQUNqQjs7QUFFQTtDQUNDLFdBQVc7QUFDWjs7QUFFQTtDQUNDLFdBQVc7QUFDWjs7QUFFQTs7Ozs7OztDQU9DLFdBQVc7QUFDWjs7QUFFQTs7Ozs7O0NBTUMsV0FBVztBQUNaOztBQUVBOzs7OztDQUtDLGNBQWM7Q0FDZCxvRUFBb0U7Q0FDcEUsaUNBQWlDO0FBQ2xDOztBQUVBOzs7Q0FHQyxXQUFXO0FBQ1o7O0FBRUE7O0NBRUMsY0FBYztBQUNmOztBQUVBOzs7Q0FHQyxXQUFXO0FBQ1o7O0FBRUE7O0NBRUMsaUJBQWlCO0FBQ2xCO0FBQ0E7Q0FDQyxrQkFBa0I7QUFDbkI7O0FBRUE7Q0FDQyxZQUFZO0FBQ2IiLCJzb3VyY2VSb290IjoiIn0= */
+  </style>
+  <style>
+  
+  </style>
+  <style>
+    .markdown-body {
+      font-family: -apple-system,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+
+    @media not print {
+      .markdown-body {
+        padding: 45px;
+      }
+
+      @media (max-width: 767px) {
+        .markdown-body {
+          padding: 15px;
+        }
+      }
+    }
+
+    .hf-container {
+      color: #24292e;
+      line-height: 1.3;
+    }
+
+    .markdown-body .highlight pre,
+    .markdown-body pre {
+      white-space: pre-wrap;
+    }
+    .markdown-body table {
+      display: table;
+    }
+    .markdown-body img[data-align="center"] {
+      display: block;
+      margin: 0 auto;
+    }
+    .markdown-body img[data-align="right"] {
+      display: block;
+      margin: 0 0 0 auto;
+    }
+    .markdown-body li.task-list-item {
+      list-style-type: none;
+    }
+    .markdown-body li > [type=checkbox] {
+      margin: 0 0 0 -1.3em;
+    }
+    .markdown-body input[type="checkbox"] ~ p {
+      margin-top: 0;
+      display: inline-block;
+    }
+    .markdown-body ol ol,
+    .markdown-body ul ol {
+      list-style-type: decimal;
+    }
+    .markdown-body ol ol ol,
+    .markdown-body ol ul ol,
+    .markdown-body ul ol ol,
+    .markdown-body ul ul ol {
+      list-style-type: decimal;
+    }
+  </style>
+  <style>.markdown-body a.footnote-ref {
+  text-decoration: none;
+}
+
+.footnotes {
+  font-size: .85em;
+  opacity: .8;
+}
+
+.footnotes li[role="doc-endnote"] {
+  position: relative;
+}
+
+.footnotes .footnote-back {
+  position: absolute;
+  font-family: initial;
+  top: .2em;
+  right: 1em;
+  text-decoration: none;
+}
+
+.inline-math.invalid,
+.multiple-math.invalid {
+  color: rgb(255, 105, 105);
+}
+
+.toc-container {
+  width: 100%;
+}
+
+.toc-container .toc-title {
+  font-weight: 700;
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+.toc-container li,
+.toc-container ul,
+.toc-container ul li {
+  list-style: none !important;
+}
+
+.toc-container > ul {
+  padding-left: 0;
+}
+
+.toc-container ul li span {
+  display : flex;
+}
+
+.toc-container ul li span a {
+  color: inherit;
+  text-decoration: none;
+}
+.toc-container ul li span a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.toc-container ul li span span.dots {
+  flex: 1;
+  height: 0.65em;
+  margin: 0 10px;
+  border-bottom: 2px dotted black;
+}
+
+/*# sourceURL=webpack://./src/muya/lib/assets/styles/exportStyle.css */
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9tdXlhL2xpYi9hc3NldHMvc3R5bGVzL2V4cG9ydFN0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHFCQUFxQjtBQUN2Qjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsb0JBQW9CO0VBQ3BCLFNBQVM7RUFDVCxVQUFVO0VBQ1YscUJBQXFCO0FBQ3ZCOztBQUVBOztFQUVFLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0FBQ2xCOztBQUVBOzs7RUFHRSwyQkFBMkI7QUFDN0I7O0FBRUE7RUFDRSxlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGNBQWM7RUFDZCxxQkFBcUI7QUFDdkI7QUFDQTtFQUNFLGNBQWM7RUFDZCxxQkFBcUI7QUFDdkI7O0FBRUE7RUFDRSxPQUFPO0VBQ1AsY0FBYztFQUNkLGNBQWM7RUFDZCwrQkFBK0I7QUFDakMiLCJzb3VyY2VSb290IjoiIn0= */</style>
+  <style>.markdown-body{}body {counter-reset: h2}
+h2 {counter-reset: h3}
+h3 {counter-reset: h4}
+h4 {counter-reset: h5}
+h5 {counter-reset: h6}
+h2:before {counter-increment: h2; content: counter(h2) ". "}
+h3:before {counter-increment: h3; content: counter(h2) "." counter(h3) ". "}
+h4:before {counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "}
+h5:before {counter-increment: h5; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "}
+h6:before {counter-increment: h6; content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". "}
+h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before { content: ""; counter-increment: none }pre.front-matter{display:none!important;}</style>
+</head>
+<body>
+  <article class="markdown-body"><h1 class="atx" id="presentation-du-sql-sous-mysqlmariadb">Présentation du SQL sous MySQL/MariaDB</h1>
+<h2 class="atx" id="histoire-du-sql">Histoire du SQL</h2>
 <p><strong>SQL (Structured Query Language)</strong> est un langage standardisé de gestion de base de données qui a été développé pour la première fois dans les années 1970 par IBM. Il a été conçu pour manipuler et récupérer des données stockées dans les systèmes de gestion de bases de données relationnelles. Le premier prototype, appelé SEQUEL (Structured English Query Language), a été développé pour le projet de système de gestion de bases de données relationnelles appelé System R chez IBM. Au fil du temps, le langage a été normalisé par l'ANSI et l'ISO, ce qui a conduit à sa large adoption dans l'industrie.</p>
-<h2 id="mysql-et-mariadb">MySQL et MariaDB</h2>
-<p><strong>MySQL</strong> est l'un des systèmes de gestion de bases de données relationnelles open source les plus populaires. Il a été créé par Michael Widenius (&quot;Monty&quot;) et David Axmark dans les années 1990. MySQL est célèbre pour sa rapidité, sa robustesse et sa facilité d'utilisation. Il est largement utilisé pour les applications web et est devenu une partie intégrante de la pile technologique LAMP (Linux, Apache, MySQL, PHP/Python/Perl).</p>
+<h2 class="atx" id="liste-de-quelques-sgbd-en-sql">Liste de quelques SGBD en SQL</h2>
+<p>Les systèmes de gestion de bases de données (SGBD) en SQL sont nombreux et variés, chacun ayant des caractéristiques et des avantages spécifiques. Voici quelques-uns des principaux SGBD basés sur SQL :</p>
+<ol>
+<li><p><strong>Oracle Database</strong> : C'est l'un des systèmes de gestion de bases de données relationnelles les plus robustes et les plus utilisés, idéal pour les grandes entreprises avec de grandes quantités de données et des transactions complexes.</p>
+</li>
+<li><p><strong>Microsoft SQL Server</strong> : Ce SGBD est très populaire dans les environnements Windows et offre une intégration facile avec d'autres produits Microsoft. Il est connu pour sa facilité d'utilisation et ses bonnes performances.</p>
+</li>
+<li><p><strong>MySQL</strong> : Propriété d'Oracle Corporation, MySQL est très populaire dans le monde du web pour sa facilité d'utilisation et sa gratuité. Il est souvent utilisé pour les applications web et les sites Internet.</p>
+</li>
+<li><p><strong>PostgreSQL</strong> : Connu pour sa conformité aux standards et son extensibilité, PostgreSQL est un système de gestion de base de données relationnelle objet très respecté et puissant.</p>
+</li>
+<li><p><strong>IBM Db2</strong> : Db2 offre des capacités avancées de gestion de données et d'analyse pour les entreprises, avec des options disponibles pour le cloud ainsi que pour les déploiements sur site.</p>
+</li>
+<li><p><strong>SQLite</strong> : Très léger, SQLite est une solution de base de données qui est souvent utilisée pour les applications mobiles et les petites applications de bureau. Il est unique en ce qu'il est intégré directement dans une application.</p>
+</li>
+<li><p><strong>MariaDB</strong> : Créé par les développeurs originaux de MySQL, MariaDB est souvent considéré comme son remplacement direct, offrant plus de fonctionnalités, une meilleure performance et une plus grande ouverture.</p>
+</li>
+<li><p><strong>SAP HANA</strong> : C'est une plateforme in-memory qui permet le traitement de grandes quantités de données en temps réel. SAP HANA est particulièrement bien adaptée pour les environnements d'affaires qui utilisent d'autres logiciels SAP.</p>
+</li>
+</ol>
+<p>Chacun de ces SGBD a ses propres caractéristiques qui peuvent être mieux adaptées à certaines applications ou environnements que d'autres.</p>
+<h2 class="atx" id="mysql-et-mariadb">MySQL et MariaDB</h2>
+<p><strong>MySQL</strong> est l'un des systèmes de gestion de bases de données relationnelles open source les plus populaires. Il a été créé par Michael Widenius ("Monty") et David Axmark dans les années 1990. MySQL est célèbre pour sa rapidité, sa robustesse et sa facilité d'utilisation. Il est largement utilisé pour les applications web et est devenu une partie intégrante de la pile technologique LAMP (Linux, Apache, MySQL, PHP/Python/Perl).</p>
 <p><strong>MariaDB</strong> est open source et a été forké de MySQL en 2009 par les mêmes développeurs qui ont créé MySQL, après que MySQL a été acquis par Oracle Corporation. MariaDB est conçu pour être compatible avec MySQL, tout en offrant de nouvelles fonctionnalités, des performances améliorées et des fonctionnalités remplacées qui n'étaient pas disponibles dans les versions gratuites de MySQL.</p>
-<h2 id="fonctionnement-général">Fonctionnement Général</h2>
+<h2 class="atx" id="fonctionnement-general">Fonctionnement Général</h2>
 <p>SQL fonctionne en analysant et en exécutant des instructions écrites dans le langage SQL. Ces instructions peuvent effectuer diverses tâches, telles que la création de tables, la mise à jour de données, la récupération de données, et la gestion des transactions. SQL utilise des déclarations pour définir des structures de données, des requêtes pour récupérer des données et des commandes pour gérer les données et les transactions.</p>
-<h2 id="moteurs-de-table-mysql">Moteurs de Table MySQL</h2>
-<p>MySQL utilise ce qu'on appelle des &quot;moteurs de stockage&quot; pour gérer la manière dont les données sont stockées, gérées et récupérées. Chaque moteur de stockage a ses propres propriétés, optimisations et utilisations spécifiques. Voici quelques-uns des moteurs les plus courants :</p>
+<h2 class="atx" id="moteurs-de-table-mysql">Moteurs de Table MySQL</h2>
+<p>MySQL utilise ce qu'on appelle des "moteurs de stockage" pour gérer la manière dont les données sont stockées, gérées et récupérées. Chaque moteur de stockage a ses propres propriétés, optimisations et utilisations spécifiques. Voici quelques-uns des moteurs les plus courants :</p>
 <ul>
-<li>
-<p><strong>MyISAM</strong> : C'était le moteur par défaut avant MySQL 5.5. Il est connu pour sa rapidité dans les opérations de lecture, mais il ne supporte pas les transactions ni la récupération après un crash.</p>
+<li><p><strong>MyISAM</strong> : C'était le moteur par défaut avant MySQL 5.5. Il est connu pour sa rapidité dans les opérations de lecture, mais il ne supporte pas les transactions ni la récupération après un crash.</p>
 </li>
-<li>
-<p><strong>InnoDB</strong> : C'est le moteur de stockage par défaut pour MySQL depuis la version 5.5. InnoDB supporte les transactions, la récupération après un crash et le verrouillage au niveau des lignes. Il est conçu pour maximiser la robustesse et l'intégrité des données.</p>
+<li><p><strong>InnoDB</strong> : C'est le moteur de stockage par défaut pour MySQL depuis la version 5.5. InnoDB supporte les transactions, la récupération après un crash et le verrouillage au niveau des lignes. Il est conçu pour maximiser la robustesse et l'intégrité des données.</p>
 </li>
-<li>
-<p><strong>Memory</strong> : Ce moteur stocke les données en mémoire, ce qui offre un accès très rapide. Cependant, les données sont perdues lorsque la base de données est arrêtée, car elles ne sont pas stockées de manière persistante.</p>
+<li><p><strong>Memory</strong> : Ce moteur stocke les données en mémoire, ce qui offre un accès très rapide. Cependant, les données sont perdues lorsque la base de données est arrêtée, car elles ne sont pas stockées de manière persistante.</p>
 </li>
-<li>
-<p><strong>Archive</strong> : Utilisé pour le stockage d'un grand nombre de données qui ne nécessitent pas de modification fréquente. Il est optimisé pour les insertions rapides et la compression des données.</p>
+<li><p><strong>Archive</strong> : Utilisé pour le stockage d'un grand nombre de données qui ne nécessitent pas de modification fréquente. Il est optimisé pour les insertions rapides et la compression des données.</p>
 </li>
 </ul>
 <p>Les moteurs de table de MySQL permettent aux utilisateurs de choisir la meilleure façon de stocker et de gérer leurs données en fonction de leurs besoins spécifiques, ce qui rend ce système extrêmement flexible et puissant pour une large gamme d'applications.</p>
-<h2 id="documentation-sql--guillemets-et-syntaxe">Documentation SQL : Guillemets et Syntaxe</h2>
-<h3 id="introduction">Introduction</h3>
-<p>En SQL, l'usage des guillemets simples ('), doubles (&quot;), et des accents graves (`) varie selon le système de gestion de base de données (SGBD) utilisé. Ces caractères sont utilisés pour identifier les éléments de la base de données, comme les noms de tables et de colonnes, et pour délimiter les chaînes de caractères.</p>
-<h3 id="guillemets-simples-">Guillemets simples ('')</h3>
+<h2 class="atx" id="documentation-sql--guillemets-et-syntaxe">Documentation SQL : Guillemets et Syntaxe</h2>
+<h3 class="atx" id="introduction">Introduction</h3>
+<p>En SQL, l'usage des guillemets simples ('), doubles ("), et des accents graves (`) varie selon le système de gestion de base de données (SGBD) utilisé. Ces caractères sont utilisés pour identifier les éléments de la base de données, comme les noms de tables et de colonnes, et pour délimiter les chaînes de caractères.</p>
+<h3 class="atx" id="guillemets-simples-and39and39">Guillemets simples ('')</h3>
 <ul>
-<li><strong>Usage :</strong> Utilisés pour délimiter les chaînes de caractères.</li>
-<li><strong>Exemple :</strong><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> utilisateurs <span class="hljs-keyword">WHERE</span> nom <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Dupont&#x27;</span>;
-</code></pre>
+<li><p><strong>Usage :</strong> Utilisés pour délimiter les chaînes de caractères.</p>
+</li>
+<li><p><strong>Exemple :</strong> </p>
+<pre><code class="fenced-code-block language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> utilisateurs <span class="token keyword">WHERE</span> nom <span class="token operator">=</span> <span class="token string">'Dupont'</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ul>
-<h3 id="guillemets-doubles-">Guillemets doubles (&quot;&quot;)</h3>
+<h3 class="atx" id="guillemets-doubles-andquotandquot">Guillemets doubles ("")</h3>
 <ul>
-<li><strong>Usage :</strong> Selon le standard SQL, les guillemets doubles sont utilisés pour identifier les identifiants (noms de table, de colonne, etc.) qui ne respectent pas les conventions normales de nommage ou qui contiennent des caractères spéciaux.</li>
-<li><strong>Exemple :</strong><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> &quot;nomColonne&quot; <span class="hljs-keyword">FROM</span> &quot;maTable&quot; <span class="hljs-keyword">WHERE</span> &quot;nomColonne&quot; <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;valeur&#x27;</span>;
-</code></pre>
+<li><p><strong>Usage :</strong> Selon le standard SQL, les guillemets doubles sont utilisés pour identifier les identifiants (noms de table, de colonne, etc.) qui ne respectent pas les conventions normales de nommage ou qui contiennent des caractères spéciaux.</p>
 </li>
-<li><strong>Remarque :</strong> Tous les SGBD ne suivent pas cette convention. Par exemple, MySQL utilise les guillemets doubles comme des guillemets simples pour délimiter les chaînes, à moins que le mode ANSI_QUOTES soit activé.</li>
+<li><p><strong>Exemple :</strong></p>
+<pre><code class="fenced-code-block language-sql"><span class="token keyword">SELECT</span> <span class="token string">"nomColonne"</span> <span class="token keyword">FROM</span> <span class="token string">"maTable"</span> <span class="token keyword">WHERE</span> <span class="token string">"nomColonne"</span> <span class="token operator">=</span> <span class="token string">'valeur'</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p><strong>Remarque :</strong> Tous les SGBD ne suivent pas cette convention. Par exemple, MySQL utilise les guillemets doubles comme des guillemets simples pour délimiter les chaînes, à moins que le mode ANSI_QUOTES soit activé.</p>
+</li>
 </ul>
-<h3 id="accents-graves-">Accents graves (`)</h3>
+<h3 class="atx" id="accents-graves-">Accents graves (`)</h3>
 <ul>
-<li><strong>Usage :</strong> Utilisés spécifiquement dans MySQL et quelques autres SGBD pour entourer les identifiants.</li>
-<li><strong>Exemple :</strong><pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> `nomColonne` <span class="hljs-keyword">FROM</span> `maTable` <span class="hljs-keyword">WHERE</span> `nomColonne` <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;valeur&#x27;</span>;
-</code></pre>
+<li><p><strong>Usage :</strong> Utilisés spécifiquement dans MySQL et quelques autres SGBD pour entourer les identifiants.</p>
 </li>
-<li><strong>Remarque :</strong> Cela permet de s'assurer que les mots réservés peuvent être utilisés comme noms de table ou de colonne sans provoquer d'erreurs.</li>
+<li><p><strong>Exemple :</strong></p>
+<pre><code class="fenced-code-block language-sql"><span class="token keyword">SELECT</span> <span class="token identifier"><span class="token punctuation">`</span>nomColonne<span class="token punctuation">`</span></span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>maTable<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>nomColonne<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'valeur'</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p><strong>Remarque :</strong> Cela permet de s'assurer que les mots réservés peuvent être utilisés comme noms de table ou de colonne sans provoquer d'erreurs.</p>
+</li>
 </ul>
-<h3 id="règles-de-syntaxe-générale">Règles de syntaxe générale</h3>
+<h3 class="atx" id="regles-de-syntaxe-generale">Règles de syntaxe générale</h3>
 <ol>
 <li><strong>Sensibilité à la casse :</strong> SQL n'est pas sensible à la casse pour les mots-clés, mais le traitement des identifiants peut l'être selon le SGBD et la configuration du système d'exploitation sous-jacent.</li>
-<li><strong>Commentaires :</strong>
-<ul>
+<li><strong>Commentaires :</strong><ul>
 <li>Commentaires sur une ligne : Utilisez <code>-- commentaire</code> ou <code># commentaire</code> (spécifique à MySQL).</li>
 <li>Commentaires sur plusieurs lignes : Utilisez <code>/* commentaire */</code>.</li>
 </ul>
 </li>
 <li><strong>Terminaison des instructions :</strong> Les instructions SQL doivent se terminer par un point-virgule (<code>;</code>), bien que certains outils et environnements puissent tolérer des instructions sans point-virgule en fin de requête.</li>
-<li><strong>Nommage des identifiants :</strong>
-<ul>
+<li><strong>Nommage des identifiants :</strong><ul>
 <li>Ne doivent pas commencer par un chiffre, mais peuvent être numériques si délimités correctement.</li>
 <li>Ne doivent pas contenir d'espaces. Utilisez des underscores <code>_</code> comme séparateurs.</li>
 <li>Évitez d'utiliser des mots réservés du SQL, à moins qu'ils ne soient entourés par des guillemets appropriés.</li>
 </ul>
 </li>
 </ol>
-<h2 id="sql-concrètement">SQL concrètement</h2>
-<h3 id="1-création-de-la-base-de-données-et-des-tables">1. Création de la Base de Données et des Tables</h3>
-<pre><code class="language-sql"><span class="hljs-comment">-- Crée la base de données si elle n&#x27;existe pas et la sélectionne pour utilisation.</span>
-<span class="hljs-keyword">CREATE</span> DATABASE IF <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> restaurant;
-USE restaurant;
-
-<span class="hljs-comment">-- Crée la table Client.</span>
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Client (
-    id_client <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY, 
-    nom <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>), 
-    prenom <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>), 
-    email <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>)
-);
-
-<span class="hljs-comment">-- Crée la table Commande.</span>
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Commande (
-    id_commande <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY, 
-    id_client <span class="hljs-type">INT</span>, 
-    date_commande <span class="hljs-type">DATE</span>, 
-    total <span class="hljs-type">DECIMAL</span>(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>), 
-    <span class="hljs-keyword">FOREIGN</span> KEY (id_client) <span class="hljs-keyword">REFERENCES</span> Client(id_client)
-);
-
-<span class="hljs-comment">-- Crée la table Plat.</span>
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Plat (
-    id_plat <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY, 
-    nom_plat <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>), 
-    id_categorie <span class="hljs-type">INT</span>, 
-    prix <span class="hljs-type">DECIMAL</span>(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>), 
-    <span class="hljs-keyword">FOREIGN</span> KEY (id_categorie) <span class="hljs-keyword">REFERENCES</span> Categorie(id_categorie)
-);
-
-<span class="hljs-comment">-- Suppression puis recréation de la table Categorie.</span>
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> Categorie;
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Categorie (
-    id_categorie <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY, 
-    nom_categorie <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>)
-);
-
-
-<span class="hljs-comment">-- Données pour la table `Client`</span>
-
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Client (id_client, nom, prenom, email) <span class="hljs-keyword">VALUES</span>
-(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Martin&#x27;</span>, <span class="hljs-string">&#x27;Lucie&#x27;</span>, <span class="hljs-string">&#x27;lucie.martin@example.com&#x27;</span>),
-(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Bernard&#x27;</span>, <span class="hljs-string">&#x27;Julien&#x27;</span>, <span class="hljs-string">&#x27;julien.bernard@example.com&#x27;</span>),
-(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Thomas&#x27;</span>, <span class="hljs-string">&#x27;Émilie&#x27;</span>, <span class="hljs-string">&#x27;emilie.thomas@example.com&#x27;</span>),
-(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;Petit&#x27;</span>, <span class="hljs-string">&#x27;Sophie&#x27;</span>, <span class="hljs-string">&#x27;sophie.petit@example.com&#x27;</span>),
-(<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;Robert&#x27;</span>, <span class="hljs-string">&#x27;Christophe&#x27;</span>, <span class="hljs-string">&#x27;christophe.robert@example.com&#x27;</span>);
-
-
-<span class="hljs-comment">-- Données pour la table `Categorie`</span>
-
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Categorie (id_categorie, nom_categorie) <span class="hljs-keyword">VALUES</span>
-(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Entrée&#x27;</span>),
-(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Plat principal&#x27;</span>),
-(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Dessert&#x27;</span>),
-(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;Boisson&#x27;</span>);
-
-
-<span class="hljs-comment">-- Données pour la table `Plat`</span>
-
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Plat (id_plat, nom_plat, id_categorie, prix) <span class="hljs-keyword">VALUES</span>
-(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Salade Niçoise&#x27;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">12.50</span>),
-(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Steak Frites&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">18.90</span>),
-(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Mousse au Chocolat&#x27;</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6.50</span>),
-(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;Poulet Basquaise&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">16.50</span>),
-(<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;Tarte Tatin&#x27;</span>, <span class="hljs-number">3</span>, <span class="hljs-number">8.00</span>),
-(<span class="hljs-number">6</span>, <span class="hljs-string">&#x27;Limonade Maison&#x27;</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3.75</span>);
-
-
-<span class="hljs-comment">-- Données pour la table `Commande`</span>
-
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Commande (id_commande, id_client, date_commande, total) <span class="hljs-keyword">VALUES</span>
-(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;2023-09-01&#x27;</span>, <span class="hljs-number">45.90</span>),
-(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;2023-09-02&#x27;</span>, <span class="hljs-number">24.25</span>),
-(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-string">&#x27;2023-09-03&#x27;</span>, <span class="hljs-number">19.75</span>),
-(<span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-string">&#x27;2023-09-04&#x27;</span>, <span class="hljs-number">34.75</span>),
-(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-string">&#x27;2023-09-05&#x27;</span>, <span class="hljs-number">22.50</span>);
-</code></pre>
-<h3 id="2-requêtes-sql">2. Requêtes SQL</h3>
-<pre><code class="language-sql"><span class="hljs-comment">-- 1. Sélectionner toutes les colonnes de la table Client.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Client;
-
-<span class="hljs-comment">-- 2. Sélectionner le nom et l&#x27;email des clients dont le nom commence par &quot;A&quot;.</span>
-<span class="hljs-keyword">SELECT</span> nom, email <span class="hljs-keyword">FROM</span> Client <span class="hljs-keyword">WHERE</span> nom <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;A%&#x27;</span>;
-
-<span class="hljs-comment">-- 3. Sélectionner le nombre total de clients.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">AS</span> nombre_clients <span class="hljs-keyword">FROM</span> Client;
-
-<span class="hljs-comment">-- 4. Sélectionner le plat le moins cher.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Plat <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> prix LIMIT <span class="hljs-number">1</span>;
-
-<span class="hljs-comment">-- 5. Sélectionner les plats dont le prix est supérieur à 10 euros et dans une catégorie spécifique.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Plat <span class="hljs-keyword">WHERE</span> prix <span class="hljs-operator">&gt;</span> <span class="hljs-number">10</span> <span class="hljs-keyword">AND</span> id_categorie <span class="hljs-operator">=</span> (<span class="hljs-keyword">SELECT</span> id_categorie <span class="hljs-keyword">FROM</span> Categorie <span class="hljs-keyword">WHERE</span> nom_categorie <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Plat principal&#x27;</span>);
-
-<span class="hljs-comment">-- 6. Sélectionner les commandes effectuées par un client donné (ID 1).</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Commande <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
-
-<span class="hljs-comment">-- 7. Sélectionner le montant total de toutes les commandes.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(total) <span class="hljs-keyword">AS</span> montant_total <span class="hljs-keyword">FROM</span> Commande;
-
-<span class="hljs-comment">-- 8. Mettre à jour le nom d&#x27;un client (ID 1).</span>
-<span class="hljs-keyword">UPDATE</span> Client <span class="hljs-keyword">SET</span> nom <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Nouveau Nom&#x27;</span> <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
-
-<span class="hljs-comment">-- 9. Insérer un nouveau plat dans la table Plat.</span>
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Plat (nom_plat, prix, id_categorie) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;Nouveau Plat&#x27;</span>, <span class="hljs-number">15.99</span>, (<span class="hljs-keyword">SELECT</span> id_categorie <span class="hljs-keyword">FROM</span> Categorie <span class="hljs-keyword">WHERE</span> nom_categorie <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Entrée&#x27;</span>));
-
-<span class="hljs-comment">-- 10. Supprimer un plat de la table Plat (ID 1).</span>
-<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Plat <span class="hljs-keyword">WHERE</span> id_plat <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
-
-<span class="hljs-comment">-- 11. Sélectionner les plats en ordre décroissant de prix.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Plat <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> prix <span class="hljs-keyword">DESC</span>;
-
-<span class="hljs-comment">-- 12. Sélectionner les clients ayant passé une commande avec un montant supérieur à 50 euros.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> c.<span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Client c <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Commande cm <span class="hljs-keyword">ON</span> c.id_client <span class="hljs-operator">=</span> cm.id_client <span class="hljs-keyword">WHERE</span> cm.total <span class="hljs-operator">&gt;</span> <span class="hljs-number">50</span>;
-
-<span class="hljs-comment">-- 13. Sélectionner les plats avec leur catégorie respective.</span>
-<span class="hljs-keyword">SELECT</span> p.nom_plat <span class="hljs-keyword">AS</span> plat, c.nom_categorie <span class="hljs-keyword">AS</span> categorie <span class="hljs-keyword">FROM</span> Plat p <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Categorie c <span class="hljs-keyword">ON</span> p.id_categorie <span class="hljs-operator">=</span> c.id_categorie;
-
-<span class="hljs-comment">-- 14. Sélectionner les clients n&#x27;ayant jamais passé de commande.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> Client <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> id_client <span class="hljs-keyword">FROM</span> Commande);
-
-<span class="hljs-comment">-- 15. Sélectionner les plats et leur nombre de commandes respectif, triés par nombre de commandes décroissant.</span>
-<span class="hljs-keyword">SELECT</span> p.nom_plat <span class="hljs-keyword">AS</span> plat, <span class="hljs-built_in">COUNT</span>(cm.id_commande) <span class="hljs-keyword">AS</span> nombre_commandes <span class="hljs-keyword">FROM</span> Plat p <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> Commande cm <span class="hljs-keyword">ON</span> p.id_plat <span class="hljs-operator">=</span> cm.id_plat <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> p.id_plat <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> nombre_commandes <span class="hljs-keyword">DESC</span>;
-</code></pre>
-<h2 id="sql-légèrement-avancé-">SQL (légèrement) avancé ...</h2>
-<h3 id="jointures-variées-inner-join-left-join-right-join-cross-join">Jointures Variées (INNER JOIN, LEFT JOIN, RIGHT JOIN, CROSS JOIN)</h3>
-<pre><code class="language-sql"><span class="hljs-comment">-- INNER JOIN récupère les enregistrements correspondants dans les deux tables.</span>
-<span class="hljs-keyword">SELECT</span> Client.nom, Commande.date_commande
-<span class="hljs-keyword">FROM</span> Client
-<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Commande <span class="hljs-keyword">ON</span> Client.id_client <span class="hljs-operator">=</span> Commande.id_client;
-
-<span class="hljs-comment">-- LEFT JOIN inclut tous les enregistrements de la table de gauche et les correspondants de la table de droite.</span>
-<span class="hljs-keyword">SELECT</span> Client.nom, Commande.date_commande
-<span class="hljs-keyword">FROM</span> Client
-<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> Commande <span class="hljs-keyword">ON</span> Client.id_client <span class="hljs-operator">=</span> Commande.id_client;
-
-<span class="hljs-comment">-- RIGHT JOIN n&#x27;est pas supporté dans toutes les bases de données, donc vérifiez la compatibilité.</span>
-<span class="hljs-comment">-- Elle inclut tous les enregistrements de la table de droite et les correspondants de la table de gauche.</span>
-<span class="hljs-comment">-- Si votre système de gestion de base de données ne supporte pas RIGHT JOIN, utilisez LEFT JOIN avec l&#x27;ordre des tables inversé.</span>
-<span class="hljs-keyword">SELECT</span> Commande.date_commande, Client.nom
-<span class="hljs-keyword">FROM</span> Commande
-<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> Client <span class="hljs-keyword">ON</span> Commande.id_client <span class="hljs-operator">=</span> Client.id_client;
-
-<span class="hljs-comment">-- CROSS JOIN produit le produit cartésien des deux tables.</span>
-<span class="hljs-keyword">SELECT</span> Client.nom, Plat.nom_plat
-<span class="hljs-keyword">FROM</span> Client
-<span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> Plat;
-</code></pre>
-<h3 id="fonctions-sql-avancées-group-by-having-distinct">Fonctions SQL Avancées (GROUP BY, HAVING, DISTINCT)</h3>
-<pre><code class="language-sql"><span class="hljs-comment">-- Utilisation de GROUP BY avec HAVING pour filtrer les résultats.</span>
-<span class="hljs-keyword">SELECT</span> Categorie.nom_categorie, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">AS</span> Nombre_Plats
-<span class="hljs-keyword">FROM</span> Plat
-<span class="hljs-keyword">JOIN</span> Categorie <span class="hljs-keyword">ON</span> Plat.id_categorie <span class="hljs-operator">=</span> Categorie.id_categorie
-<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Categorie.nom_categorie
-<span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span>;
-
-<span class="hljs-comment">-- Utilisation de DISTINCT pour éviter les doublons.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> Client.prenom
-<span class="hljs-keyword">FROM</span> Client;
-</code></pre>
-<h3 id="fonctions-de-date-et-dheure">Fonctions de Date et d'Heure</h3>
-<pre><code class="language-sql"><span class="hljs-comment">-- Extrait l&#x27;année de la date de commande.</span>
-<span class="hljs-keyword">SELECT</span> id_commande, <span class="hljs-keyword">YEAR</span>(date_commande) <span class="hljs-keyword">AS</span> Annee_Commande
-<span class="hljs-keyword">FROM</span> Commande;
-
-<span class="hljs-comment">-- Calcule la différence en jours entre deux dates.</span>
-<span class="hljs-keyword">SELECT</span> DATEDIFF(CURDATE(), date_commande) <span class="hljs-keyword">AS</span> Jours_Depuis_Commande
-<span class="hljs-keyword">FROM</span> Commande;
-</code></pre>
-<h3 id="utilisation-de-fonctions-daggrégation-sum-avg-min-max">Utilisation de Fonctions d'Aggrégation (SUM, AVG, MIN, MAX)</h3>
-<pre><code class="language-sql"><span class="hljs-comment">-- Calcule le total des ventes, la commande moyenne, le montant maximum et minimum des commandes.</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(total) <span class="hljs-keyword">AS</span> Total_Ventes, <span class="hljs-built_in">AVG</span>(total) <span class="hljs-keyword">AS</span> Moyenne_Commande, <span class="hljs-built_in">MIN</span>(total) <span class="hljs-keyword">AS</span> Commande_Min, <span class="hljs-built_in">MAX</span>(total) <span class="hljs-keyword">AS</span> Commande_Max
-<span class="hljs-keyword">FROM</span> Commande;
-</code></pre>
-<h3 id="sous-requêtes-et-opérations-sur-les-sets-in-not-in-exists">Sous-requêtes et Opérations sur les Sets (IN, NOT IN, EXISTS)</h3>
-<pre><code class="language-sql"><span class="hljs-comment">-- Utilise IN pour sélectionner les clients ayant passé une commande de plus de 100 euros.</span>
-<span class="hljs-keyword">SELECT</span> nom, prenom <span class="hljs-keyword">FROM</span> Client
-<span class="hljs-keyword">WHERE</span> id_client <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> id_client <span class="hljs-keyword">FROM</span> Commande <span class="hljs-keyword">WHERE</span> total <span class="hljs-operator">&gt;</span> <span class="hljs-number">100</span>);
-
-<span class="hljs-comment">-- Utilise EXISTS pour vérifier l&#x27;existence de certaines commandes.</span>
-<span class="hljs-keyword">SELECT</span> nom <span class="hljs-keyword">FROM</span> Client c
-<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">EXISTS</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span> <span class="hljs-keyword">FROM</span> Commande co <span class="hljs-keyword">WHERE</span> co.id_client <span class="hljs-operator">=</span> c.id_client <span class="hljs-keyword">AND</span> total <span class="hljs-operator">&gt;</span> <span class="hljs-number">150</span>);
-</code></pre>
-<h3 id="insertions-mises-à-jour-et-suppressions-de-données">Insertions, Mises à jour, et Suppressions de données</h3>
-<pre><code class="language-sql"><span class="hljs-comment">-- Insertion d&#x27;un nouveau client.</span>
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Client (id_client, nom, prenom, email) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">101</span>, <span class="hljs-string">&#x27;Dupont&#x27;</span>, <span class="hljs-string">&#x27;Jean&#x27;</span>, <span class="hljs-string">&#x27;jean.dupont@example.com&#x27;</span>);
-
-<span class="hljs-comment">-- Mise à jour de l&#x27;email d&#x27;un client.</span>
-<span class="hljs-keyword">UPDATE</span> Client <span class="hljs-keyword">SET</span> email <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;nouveau.email@example.com&#x27;</span> <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-operator">=</span> <span class="hljs-number">101</span>;
-
-<span class="hljs-comment">-- Suppression d&#x27;un client.</span>
-<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Client <span class="hljs-keyword">WHERE</span> id_client <span class="hljs-operator">=</span> <span class="hljs-number">101</span>;
-</code></pre>
-<h3 id="transactions-start-transaction-commit-rollback">Transactions (START TRANSACTION, COMMIT, ROLLBACK)</h3>
+<h2 class="atx" id="sql-concretement">SQL concrètement</h2>
+<h3 class="atx" id="1-creation-de-la-base-de-donnees-et-des-tables">1. Création de la Base de Données et des Tables</h3>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Supprime la base de données si elle existe.</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> restaurant<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Création de la base de données.</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> restaurant<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Sélection de la base.</span>
+<span class="token keyword">USE</span> restaurant<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Création de la table client.</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> client <span class="token punctuation">(</span>
+    id_client <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span> 
+    nom <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+    prenom <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+    email <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Création de la table commande.</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> commande <span class="token punctuation">(</span>
+    id_commande <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span> 
+    id_client <span class="token keyword">INT</span><span class="token punctuation">,</span> 
+    date_commande <span class="token keyword">DATE</span><span class="token punctuation">,</span> 
+    total <span class="token keyword">DECIMAL</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id_client<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> client<span class="token punctuation">(</span>id_client<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Création de la table categorie.</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> categorie <span class="token punctuation">(</span>
+    id_categorie <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span> 
+    nom_categorie <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Création de la table plat.</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> plat <span class="token punctuation">(</span>
+    id_plat <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span> 
+    nom_plat <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+    id_categorie <span class="token keyword">INT</span><span class="token punctuation">,</span> 
+    prix <span class="token keyword">DECIMAL</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id_categorie<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> categorie<span class="token punctuation">(</span>id_categorie<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Données pour la table `client`</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> client <span class="token punctuation">(</span>nom<span class="token punctuation">,</span> prenom<span class="token punctuation">,</span> email<span class="token punctuation">)</span> <span class="token keyword">VALUES</span>
+<span class="token punctuation">(</span><span class="token string">'Martin'</span><span class="token punctuation">,</span> <span class="token string">'Lucie'</span><span class="token punctuation">,</span> <span class="token string">'lucie.martin@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Bernard'</span><span class="token punctuation">,</span> <span class="token string">'Julien'</span><span class="token punctuation">,</span> <span class="token string">'julien.bernard@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Kuong'</span><span class="token punctuation">,</span> <span class="token string">'Émilie'</span><span class="token punctuation">,</span> <span class="token string">'emilie.kuong@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Petit'</span><span class="token punctuation">,</span> <span class="token string">'Sophie'</span><span class="token punctuation">,</span> <span class="token string">'sophie.petit@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Robert'</span><span class="token punctuation">,</span> <span class="token string">'Christophe'</span><span class="token punctuation">,</span> <span class="token string">'christophe.robert@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Données pour la table `categorie`</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> categorie <span class="token punctuation">(</span>nom_categorie<span class="token punctuation">)</span> <span class="token keyword">VALUES</span>
+<span class="token punctuation">(</span><span class="token string">'Entrée'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Plat principal'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Dessert'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Boisson'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Données pour la table `plat`</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> plat <span class="token punctuation">(</span>nom_plat<span class="token punctuation">,</span> id_categorie<span class="token punctuation">,</span> prix<span class="token punctuation">)</span> <span class="token keyword">VALUES</span>
+<span class="token punctuation">(</span><span class="token string">'Salade Niçoise'</span><span class="token punctuation">,</span>        <span class="token punctuation">(</span><span class="token keyword">SELECT</span> categorie<span class="token punctuation">.</span>id_categorie <span class="token keyword">FROM</span> categorie <span class="token keyword">where</span> categorie<span class="token punctuation">.</span>nom_categorie <span class="token operator">=</span> <span class="token string">'Entrée'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token number">12.50</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Steak Frites'</span><span class="token punctuation">,</span>        <span class="token punctuation">(</span><span class="token keyword">SELECT</span> categorie<span class="token punctuation">.</span>id_categorie <span class="token keyword">FROM</span> categorie <span class="token keyword">where</span> categorie<span class="token punctuation">.</span>nom_categorie <span class="token operator">=</span> <span class="token string">'Plat principal'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">18.90</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Mousse au Chocolat'</span><span class="token punctuation">,</span>    <span class="token punctuation">(</span><span class="token keyword">SELECT</span> categorie<span class="token punctuation">.</span>id_categorie <span class="token keyword">FROM</span> categorie <span class="token keyword">where</span> categorie<span class="token punctuation">.</span>nom_categorie <span class="token operator">=</span> <span class="token string">'Dessert'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token number">6.50</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Poulet Basquaise'</span><span class="token punctuation">,</span>    <span class="token punctuation">(</span><span class="token keyword">SELECT</span> categorie<span class="token punctuation">.</span>id_categorie <span class="token keyword">FROM</span> categorie <span class="token keyword">where</span> categorie<span class="token punctuation">.</span>nom_categorie <span class="token operator">=</span> <span class="token string">'Plat principal'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">16.50</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Tarte Tatin'</span><span class="token punctuation">,</span>            <span class="token punctuation">(</span><span class="token keyword">SELECT</span> categorie<span class="token punctuation">.</span>id_categorie <span class="token keyword">FROM</span> categorie <span class="token keyword">where</span> categorie<span class="token punctuation">.</span>nom_categorie <span class="token operator">=</span> <span class="token string">'Dessert'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token number">8.00</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'Limonade Maison'</span><span class="token punctuation">,</span>        <span class="token punctuation">(</span><span class="token keyword">SELECT</span> categorie<span class="token punctuation">.</span>id_categorie <span class="token keyword">FROM</span> categorie <span class="token keyword">where</span> categorie<span class="token punctuation">.</span>nom_categorie <span class="token operator">=</span> <span class="token string">'Boisson'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token number">3.75</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Données pour la table `commande`</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> commande <span class="token punctuation">(</span>id_client<span class="token punctuation">,</span> date_commande<span class="token punctuation">,</span> total<span class="token punctuation">)</span> <span class="token keyword">VALUES</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> client<span class="token punctuation">.</span>id_client <span class="token keyword">FROM</span> client <span class="token keyword">where</span> client<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token string">'lucie.martin@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token string">'2023-09-01'</span><span class="token punctuation">,</span><span class="token number">45.90</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> client<span class="token punctuation">.</span>id_client <span class="token keyword">FROM</span> client <span class="token keyword">where</span> client<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token string">'julien.bernard@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>    <span class="token string">'2023-09-02'</span><span class="token punctuation">,</span><span class="token number">24.25</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> client<span class="token punctuation">.</span>id_client <span class="token keyword">FROM</span> client <span class="token keyword">where</span> client<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token string">'emilie.kuong@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token string">'2023-09-03'</span><span class="token punctuation">,</span><span class="token number">19.75</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> client<span class="token punctuation">.</span>id_client <span class="token keyword">FROM</span> client <span class="token keyword">where</span> client<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token string">'sophie.petit@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token string">'2023-09-04'</span><span class="token punctuation">,</span><span class="token number">34.75</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> client<span class="token punctuation">.</span>id_client <span class="token keyword">FROM</span> client <span class="token keyword">where</span> client<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token string">'christophe.robert@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'2023-09-05'</span><span class="token punctuation">,</span><span class="token number">22.50</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 class="atx" id="2-requetes-sql">2. Requêtes SQL</h3>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 1. Sélectionne toutes les colonnes de la table client.</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> client<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 2. Sélectionne le nom et l'email des clients dont le nom commence par "A".</span>
+<span class="token keyword">SELECT</span> nom<span class="token punctuation">,</span> email <span class="token keyword">FROM</span> client <span class="token keyword">WHERE</span> nom <span class="token operator">LIKE</span> <span class="token string">'A%'</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 3. Sélectionne le nombre total de clients.</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> nombre_clients <span class="token keyword">FROM</span> client<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 4. Sélectionne le plat le moins cher.</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> plat <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> prix <span class="token keyword">LIMIT</span> <span class="token number">1</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 5. Sélectionne les plats dont le prix est supérieur à 10 euros et dans une catégorie spécifique.</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> plat <span class="token keyword">WHERE</span> prix <span class="token operator">&gt;</span> <span class="token number">10</span> <span class="token operator">AND</span> id_categorie <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> id_categorie <span class="token keyword">FROM</span> categorie <span class="token keyword">WHERE</span> nom_categorie <span class="token operator">=</span> <span class="token string">'plat principal'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 6. Sélectionne les commandes effectuées par un client donné (ID 1).</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> commande <span class="token keyword">WHERE</span> id_client <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 7. Sélectionne le montant total de toutes les commandes.</span>
+<span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span>total<span class="token punctuation">)</span> <span class="token keyword">AS</span> montant_total <span class="token keyword">FROM</span> commande<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 8. Met à jour le nom d'un client (ID 1).</span>
+<span class="token keyword">UPDATE</span> client <span class="token keyword">SET</span> nom <span class="token operator">=</span> <span class="token string">'Nouveau Nom'</span> <span class="token keyword">WHERE</span> id_client <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 9. Insère un nouveau plat dans la table plat.</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> plat <span class="token punctuation">(</span>nom_plat<span class="token punctuation">,</span> prix<span class="token punctuation">,</span> id_categorie<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'Nouveau plat'</span><span class="token punctuation">,</span> <span class="token number">15.99</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> id_categorie <span class="token keyword">FROM</span> categorie <span class="token keyword">WHERE</span> nom_categorie <span class="token operator">=</span> <span class="token string">'Entrée'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 10. Supprime un plat de la table plat (ID 1).</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> plat <span class="token keyword">WHERE</span> id_plat <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 11. Sélectionne les plats en ordre décroissant de prix.</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> plat <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> prix <span class="token keyword">DESC</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 12. Sélectionne les clients ayant passé une commande avec un montant supérieur à 50 euros.</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> c<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">FROM</span> client c <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> commande cm <span class="token keyword">ON</span> c<span class="token punctuation">.</span>id_client <span class="token operator">=</span> cm<span class="token punctuation">.</span>id_client <span class="token keyword">WHERE</span> cm<span class="token punctuation">.</span>total <span class="token operator">&gt;</span> <span class="token number">50</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 13. Sélectionne les plats avec leur catégorie respective.</span>
+<span class="token keyword">SELECT</span> p<span class="token punctuation">.</span>nom_plat <span class="token keyword">AS</span> plat<span class="token punctuation">,</span> c<span class="token punctuation">.</span>nom_categorie <span class="token keyword">AS</span> categorie <span class="token keyword">FROM</span> plat p <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> categorie c <span class="token keyword">ON</span> p<span class="token punctuation">.</span>id_categorie <span class="token operator">=</span> c<span class="token punctuation">.</span>id_categorie<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 14. Sélectionne les clients n'ayant jamais passé de commande.</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> client <span class="token keyword">WHERE</span> id_client <span class="token operator">NOT</span> <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> id_client <span class="token keyword">FROM</span> commande<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- 15. Sélectionne les plats et leur nombre de commandes respectif, triés par nombre de commandes décroissant.</span>
+<span class="token keyword">SELECT</span> p<span class="token punctuation">.</span>nom_plat <span class="token keyword">AS</span> plat<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>cm<span class="token punctuation">.</span>id_commande<span class="token punctuation">)</span> <span class="token keyword">AS</span> nombre_commandes <span class="token keyword">FROM</span> plat p <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> commande cm <span class="token keyword">ON</span> p<span class="token punctuation">.</span>id_plat <span class="token operator">=</span> cm<span class="token punctuation">.</span>id_plat <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> p<span class="token punctuation">.</span>id_plat <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> nombre_commandes <span class="token keyword">DESC</span><span class="token punctuation">;</span></code></pre>
+<h2 class="atx" id="sql-legerement-avance-">SQL (légèrement) avancé ...</h2>
+<h3 class="atx" id="jointures-variees-inner-join-left-join-right-join-cross-join">Jointures Variées (INNER JOIN, LEFT JOIN, RIGHT JOIN, CROSS JOIN)</h3>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- INNER JOIN récupère les enregistrements correspondants dans les deux tables.</span>
+<span class="token keyword">SELECT</span> client<span class="token punctuation">.</span>nom<span class="token punctuation">,</span> commande<span class="token punctuation">.</span>date_commande
+<span class="token keyword">FROM</span> client
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> commande <span class="token keyword">ON</span> client<span class="token punctuation">.</span>id_client <span class="token operator">=</span> commande<span class="token punctuation">.</span>id_client<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- LEFT JOIN inclut tous les enregistrements de la table de gauche et les correspondants de la table de droite.</span>
+<span class="token keyword">SELECT</span> client<span class="token punctuation">.</span>nom<span class="token punctuation">,</span> commande<span class="token punctuation">.</span>date_commande
+<span class="token keyword">FROM</span> client
+<span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> commande <span class="token keyword">ON</span> client<span class="token punctuation">.</span>id_client <span class="token operator">=</span> commande<span class="token punctuation">.</span>id_client<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- RIGHT JOIN n'est pas supporté dans toutes les bases de données, donc vérifiez la compatibilité.</span>
+<span class="token comment">-- Elle inclut tous les enregistrements de la table de droite et les correspondants de la table de gauche.</span>
+<span class="token comment">-- Si votre système de gestion de base de données ne supporte pas RIGHT JOIN, utilisez LEFT JOIN avec l'ordre des tables inversé.</span>
+<span class="token keyword">SELECT</span> commande<span class="token punctuation">.</span>date_commande<span class="token punctuation">,</span> client<span class="token punctuation">.</span>nom
+<span class="token keyword">FROM</span> commande
+<span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> client <span class="token keyword">ON</span> commande<span class="token punctuation">.</span>id_client <span class="token operator">=</span> client<span class="token punctuation">.</span>id_client<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- CROSS JOIN produit le produit cartésien des deux tables.</span>
+<span class="token keyword">SELECT</span> client<span class="token punctuation">.</span>nom<span class="token punctuation">,</span> plat<span class="token punctuation">.</span>nom_plat
+<span class="token keyword">FROM</span> client
+<span class="token keyword">CROSS</span> <span class="token keyword">JOIN</span> plat<span class="token punctuation">;</span></code></pre>
+<h3 class="atx" id="fonctions-sql-avancees-group-by-having-distinct">Fonctions SQL Avancées (GROUP BY, HAVING, DISTINCT)</h3>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Utilisation de GROUP BY avec HAVING pour filtrer les résultats.</span>
+<span class="token keyword">SELECT</span> categorie<span class="token punctuation">.</span>nom_categorie<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> Nombre_plats
+<span class="token keyword">FROM</span> plat
+<span class="token keyword">JOIN</span> categorie <span class="token keyword">ON</span> plat<span class="token punctuation">.</span>id_categorie <span class="token operator">=</span> categorie<span class="token punctuation">.</span>id_categorie
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> categorie<span class="token punctuation">.</span>nom_categorie
+<span class="token keyword">HAVING</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">5</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Utilisation de DISTINCT pour éviter les doublons.</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> client<span class="token punctuation">.</span>prenom
+<span class="token keyword">FROM</span> client<span class="token punctuation">;</span></code></pre>
+<h3 class="atx" id="fonctions-de-date-et-dand39heure">Fonctions de Date et d'Heure</h3>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Extrait l'année de la date de commande.</span>
+<span class="token keyword">SELECT</span> id_commande<span class="token punctuation">,</span> <span class="token keyword">YEAR</span><span class="token punctuation">(</span>date_commande<span class="token punctuation">)</span> <span class="token keyword">AS</span> Annee_commande
+<span class="token keyword">FROM</span> commande<span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Calcule la différence en jours entre deux dates.</span>
+<span class="token keyword">SELECT</span> DATEDIFF<span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> date_commande<span class="token punctuation">)</span> <span class="token keyword">AS</span> Jours_Depuis_commande
+<span class="token keyword">FROM</span> commande<span class="token punctuation">;</span></code></pre>
+<h3 class="atx" id="utilisation-de-fonctions-dand39aggregation-sum-avg-min-max">Utilisation de Fonctions d'Aggrégation (SUM, AVG, MIN, MAX)</h3>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Calcule le total des ventes, la commande moyenne, le montant maximum et minimum des commandes.</span>
+<span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span>total<span class="token punctuation">)</span> <span class="token keyword">AS</span> Total_Ventes<span class="token punctuation">,</span> <span class="token function">AVG</span><span class="token punctuation">(</span>total<span class="token punctuation">)</span> <span class="token keyword">AS</span> Moyenne_commande<span class="token punctuation">,</span> <span class="token function">MIN</span><span class="token punctuation">(</span>total<span class="token punctuation">)</span> <span class="token keyword">AS</span> commande_Min<span class="token punctuation">,</span> <span class="token function">MAX</span><span class="token punctuation">(</span>total<span class="token punctuation">)</span> <span class="token keyword">AS</span> commande_Max
+<span class="token keyword">FROM</span> commande<span class="token punctuation">;</span></code></pre>
+<h3 class="atx" id="sous-requetes-et-operations-sur-les-sets-in-not-in-exists">Sous-requêtes et Opérations sur les Sets (IN, NOT IN, EXISTS)</h3>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Utilise IN pour sélectionner les clients ayant passé une commande de plus de 100 euros.</span>
+<span class="token keyword">SELECT</span> nom<span class="token punctuation">,</span> prenom <span class="token keyword">FROM</span> client
+<span class="token keyword">WHERE</span> id_client <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> id_client <span class="token keyword">FROM</span> commande <span class="token keyword">WHERE</span> total <span class="token operator">&gt;</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Utilise EXISTS pour vérifier l'existence de certaines commandes.</span>
+<span class="token keyword">SELECT</span> nom <span class="token keyword">FROM</span> client c
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token number">1</span> <span class="token keyword">FROM</span> commande co <span class="token keyword">WHERE</span> co<span class="token punctuation">.</span>id_client <span class="token operator">=</span> c<span class="token punctuation">.</span>id_client <span class="token operator">AND</span> total <span class="token operator">&gt;</span> <span class="token number">150</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 class="atx" id="insertions-mises-a-jour-et-suppressions-de-donnees">Insertions, Mises à jour, et Suppressions de données</h3>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Insertion d'un nouveau client.</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> client <span class="token punctuation">(</span>nom<span class="token punctuation">,</span> prenom<span class="token punctuation">,</span> email<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'Dupont'</span><span class="token punctuation">,</span> <span class="token string">'Jean'</span><span class="token punctuation">,</span> <span class="token string">'jean.dupont@example.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Mise à jour de l'email d'un client.</span>
+<span class="token keyword">UPDATE</span> client <span class="token keyword">SET</span> email <span class="token operator">=</span> <span class="token string">'nouveau.email@example.com'</span> <span class="token keyword">WHERE</span> id_client <span class="token operator">=</span> <span class="token number">101</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Suppression d'un client.</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> client <span class="token keyword">WHERE</span> id_client <span class="token operator">=</span> <span class="token number">101</span><span class="token punctuation">;</span></code></pre>
+<h3 class="atx" id="transactions-start-transaction-commit-rollback">Transactions (START TRANSACTION, COMMIT, ROLLBACK)</h3>
 <p>Les transactions en SQL sont des séquences d'opérations de gestion de base de données qui sont traitées de manière logique et indivisible. Elles sont essentielles pour maintenir l'intégrité des données, en particulier dans les environnements où plusieurs utilisateurs ou applications accèdent et modifient simultanément la base de données. Une transaction en SQL commence par une commande de démarrage et se termine par un commit ou un rollback.</p>
-<h4 id="principe-des-transactions">Principe des Transactions</h4>
+<h4 class="atx" id="principe-des-transactions">Principe des Transactions</h4>
 <ol>
-<li>
-<p><strong>Atomicité</strong> : Chaque transaction est atomique, ce qui signifie qu'elle est indivisible. Toutes les opérations au sein de la transaction sont effectuées avec succès, ou aucune n'est appliquée. Si une opération échoue, toutes les modifications précédentes dans la transaction sont annulées (rollback).</p>
+<li><p><strong>Atomicité</strong> : Chaque transaction est atomique, ce qui signifie qu'elle est indivisible. Toutes les opérations au sein de la transaction sont effectuées avec succès, ou aucune n'est appliquée. Si une opération échoue, toutes les modifications précédentes dans la transaction sont annulées (rollback).</p>
 </li>
-<li>
-<p><strong>Cohérence</strong> : Une transaction transforme la base de données d'un état valide à un autre état valide, en préservant l'intégrité des données. Toutes les règles d'intégrité doivent être respectées.</p>
+<li><p><strong>Cohérence</strong> : Une transaction transforme la base de données d'un état valide à un autre état valide, en préservant l'intégrité des données. Toutes les règles d'intégrité doivent être respectées.</p>
 </li>
-<li>
-<p><strong>Isolation</strong> : Chaque transaction doit être isolée des autres transactions. Les modifications effectuées dans une transaction ne doivent pas être visibles par les autres transactions avant que la transaction ne soit terminée (commit).</p>
+<li><p><strong>Isolation</strong> : Chaque transaction doit être isolée des autres transactions. Les modifications effectuées dans une transaction ne doivent pas être visibles par les autres transactions avant que la transaction ne soit terminée (commit).</p>
 </li>
-<li>
-<p><strong>Durabilité</strong> : Une fois qu'une transaction a été validée (commit), les modifications qu'elle a introduites dans la base de données doivent être permanentes, même en cas de panne du système.</p>
+<li><p><strong>Durabilité</strong> : Une fois qu'une transaction a été validée (commit), les modifications qu'elle a introduites dans la base de données doivent être permanentes, même en cas de panne du système.</p>
 </li>
 </ol>
-<h4 id="exemple-de-transaction-en-sql">Exemple de Transaction en SQL</h4>
+<h4 class="atx" id="exemple-de-transaction-en-sql">Exemple de Transaction en SQL</h4>
 <p>Pour illustrer comment les transactions fonctionnent en pratique, imaginons une base de données de gestion de comptes bancaires où les transactions sont cruciales pour assurer que tous les transferts de fonds sont effectués de manière sécurisée et cohérente.</p>
-<pre><code class="language-sql"><span class="hljs-comment">-- Démarrage de la transaction</span>
-<span class="hljs-keyword">START</span> TRANSACTION;
-
-<span class="hljs-comment">-- Tentative de transfert de 100 euros du compte 001 vers le compte 002</span>
-<span class="hljs-comment">-- Débit du compte 001</span>
-<span class="hljs-keyword">UPDATE</span> Comptes <span class="hljs-keyword">SET</span> solde <span class="hljs-operator">=</span> solde <span class="hljs-operator">-</span> <span class="hljs-number">100</span> <span class="hljs-keyword">WHERE</span> numero_compte <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;001&#x27;</span>;
-
-<span class="hljs-comment">-- Crédit du compte 002</span>
-<span class="hljs-keyword">UPDATE</span> Comptes <span class="hljs-keyword">SET</span> solde <span class="hljs-operator">=</span> solde <span class="hljs-operator">+</span> <span class="hljs-number">100</span> <span class="hljs-keyword">WHERE</span> numero_compte <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;002&#x27;</span>;
-
-<span class="hljs-comment">-- Vérification que le compte débiteur a suffisamment de fonds (ne doit pas être négatif)</span>
-<span class="hljs-keyword">SELECT</span> solde <span class="hljs-keyword">INTO</span> <span class="hljs-variable">@solde</span> <span class="hljs-keyword">FROM</span> Comptes <span class="hljs-keyword">WHERE</span> numero_compte <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;001&#x27;</span>;
-IF <span class="hljs-variable">@solde</span> <span class="hljs-operator">&lt;</span> <span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span>
-    <span class="hljs-comment">-- Si le solde est insuffisant, annulation de la transaction</span>
-    <span class="hljs-keyword">ROLLBACK</span>;
-<span class="hljs-keyword">ELSE</span>
-    <span class="hljs-comment">-- Si tout est en règle, validation de la transaction</span>
-    <span class="hljs-keyword">COMMIT</span>;
-<span class="hljs-keyword">END</span> IF;
-</code></pre>
-<h4 id="commentaires-sur-lexemple">Commentaires sur l'Exemple</h4>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Démarrage de la transaction</span>
+<span class="token keyword">START</span> <span class="token keyword">TRANSACTION</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Tentative de transfert de 100 euros du compte 001 vers le compte 002</span>
+<span class="token comment">-- Débit du compte 001</span>
+<span class="token keyword">UPDATE</span> Comptes <span class="token keyword">SET</span> solde <span class="token operator">=</span> solde <span class="token operator">-</span> <span class="token number">100</span> <span class="token keyword">WHERE</span> numero_compte <span class="token operator">=</span> <span class="token string">'001'</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Crédit du compte 002</span>
+<span class="token keyword">UPDATE</span> Comptes <span class="token keyword">SET</span> solde <span class="token operator">=</span> solde <span class="token operator">+</span> <span class="token number">100</span> <span class="token keyword">WHERE</span> numero_compte <span class="token operator">=</span> <span class="token string">'002'</span><span class="token punctuation">;</span></code></pre>
+<pre><code class="fenced-code-block language-sql"><span class="token comment">-- Vérification que le compte débiteur a suffisamment de fonds (ne doit pas être négatif)</span>
+<span class="token keyword">SELECT</span> solde <span class="token keyword">INTO</span> <span class="token variable">@solde</span> <span class="token keyword">FROM</span> Comptes <span class="token keyword">WHERE</span> numero_compte <span class="token operator">=</span> <span class="token string">'001'</span><span class="token punctuation">;</span>
+<span class="token keyword">IF</span> <span class="token variable">@solde</span> <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token keyword">THEN</span>
+    <span class="token comment">-- Si le solde est insuffisant, annulation de la transaction</span>
+    <span class="token keyword">ROLLBACK</span><span class="token punctuation">;</span>
+<span class="token keyword">ELSE</span>
+    <span class="token comment">-- Si tout est en règle, validation de la transaction</span>
+    <span class="token keyword">COMMIT</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span> <span class="token keyword">IF</span><span class="token punctuation">;</span></code></pre>
+<h4 class="atx" id="commentaires-sur-land39exemple">Commentaires sur l'Exemple</h4>
 <ul>
-<li>
-<p><strong>START TRANSACTION</strong> démarre la transaction.</p>
+<li><p><strong>START TRANSACTION</strong> démarre la transaction.</p>
 </li>
-<li>
-<p>Les commandes <strong>UPDATE</strong> sont utilisées pour transférer les fonds entre les comptes.</p>
+<li><p>Les commandes <strong>UPDATE</strong> sont utilisées pour transférer les fonds entre les comptes.</p>
 </li>
-<li>
-<p>La commande <strong>SELECT INTO</strong> récupère le solde après le débit pour vérifier si le compte ne passe pas en négatif.</p>
+<li><p>La commande <strong>SELECT INTO</strong> récupère le solde après le débit pour vérifier si le compte ne passe pas en négatif.</p>
 </li>
-<li>
-<p><strong>IF</strong> permet de tester si le solde est inférieur à zéro. Si c'est le cas, la transaction est annulée avec <strong>ROLLBACK</strong>; sinon, elle est validée avec <strong>COMMIT</strong>.</p>
+<li><p><strong>IF</strong> permet de tester si le solde est inférieur à zéro. Si c'est le cas, la transaction est annulée avec <strong>ROLLBACK</strong>; sinon, elle est validée avec <strong>COMMIT</strong>.</p>
 </li>
-<li>
-<p><strong>ROLLBACK</strong> annule toutes les modifications effectuées dans la transaction.</p>
+<li><p><strong>ROLLBACK</strong> annule toutes les modifications effectuées dans la transaction.</p>
 </li>
-<li>
-<p><strong>COMMIT</strong> applique toutes les modifications de manière permanente dans la base de données.</p>
+<li><p><strong>COMMIT</strong> applique toutes les modifications de manière permanente dans la base de données.</p>
 </li>
-<li>
-<p><strong>@solde</strong> cré une variable</p>
+<li><p><strong>@solde</strong> cré une variable</p>
 <ol>
 <li>Portée et Durée de vie : Les variables utilisateur comme @solde ont une portée limitée à la session dans laquelle elles sont définies. Elles perdent leur valeur une fois la session terminée.</li>
 <li>Sécurité des transactions : L'utilisation de cette variable dans le contexte d'une transaction bancaire est cruciale pour assurer l'intégrité des opérations financières et prévenir les erreurs telles que les découverts non autorisés.</li>
@@ -469,8 +1550,6 @@ IF <span class="hljs-variable">@solde</span> <span class="hljs-operator">&lt;</s
 </li>
 </ul>
 <p>Cet exemple montre l'utilisation essentielle des transactions pour gérer des opérations financières complexes de manière sécurisée et fiable, garantissant ainsi l'intégrité et la cohérence des données dans des systèmes transactionnels critiques.</p>
-
-            
-            
-        </body>
-        </html>
+</article>
+</body>
+</html>

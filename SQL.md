@@ -1,8 +1,33 @@
-# Présentation du SQL
+# Présentation du SQL sous MySQL/MariaDB
+
 
 ## Histoire du SQL
 
 **SQL (Structured Query Language)** est un langage standardisé de gestion de base de données qui a été développé pour la première fois dans les années 1970 par IBM. Il a été conçu pour manipuler et récupérer des données stockées dans les systèmes de gestion de bases de données relationnelles. Le premier prototype, appelé SEQUEL (Structured English Query Language), a été développé pour le projet de système de gestion de bases de données relationnelles appelé System R chez IBM. Au fil du temps, le langage a été normalisé par l'ANSI et l'ISO, ce qui a conduit à sa large adoption dans l'industrie.
+
+
+## Liste de quelques SGBD en SQL
+
+Les systèmes de gestion de bases de données (SGBD) en SQL sont nombreux et variés, chacun ayant des caractéristiques et des avantages spécifiques. Voici quelques-uns des principaux SGBD basés sur SQL :
+
+1. **Oracle Database** : C'est l'un des systèmes de gestion de bases de données relationnelles les plus robustes et les plus utilisés, idéal pour les grandes entreprises avec de grandes quantités de données et des transactions complexes.
+
+2. **Microsoft SQL Server** : Ce SGBD est très populaire dans les environnements Windows et offre une intégration facile avec d'autres produits Microsoft. Il est connu pour sa facilité d'utilisation et ses bonnes performances.
+
+3. **MySQL** : Propriété d'Oracle Corporation, MySQL est très populaire dans le monde du web pour sa facilité d'utilisation et sa gratuité. Il est souvent utilisé pour les applications web et les sites Internet.
+
+4. **PostgreSQL** : Connu pour sa conformité aux standards et son extensibilité, PostgreSQL est un système de gestion de base de données relationnelle objet très respecté et puissant.
+
+5. **IBM Db2** : Db2 offre des capacités avancées de gestion de données et d'analyse pour les entreprises, avec des options disponibles pour le cloud ainsi que pour les déploiements sur site.
+
+6. **SQLite** : Très léger, SQLite est une solution de base de données qui est souvent utilisée pour les applications mobiles et les petites applications de bureau. Il est unique en ce qu'il est intégré directement dans une application.
+
+7. **MariaDB** : Créé par les développeurs originaux de MySQL, MariaDB est souvent considéré comme son remplacement direct, offrant plus de fonctionnalités, une meilleure performance et une plus grande ouverture.
+
+8. **SAP HANA** : C'est une plateforme in-memory qui permet le traitement de grandes quantités de données en temps réel. SAP HANA est particulièrement bien adaptée pour les environnements d'affaires qui utilisent d'autres logiciels SAP.
+
+Chacun de ces SGBD a ses propres caractéristiques qui peuvent être mieux adaptées à certaines applications ou environnements que d'autres.
+
 
 ## MySQL et MariaDB
 
@@ -10,9 +35,11 @@
 
 **MariaDB** est open source et a été forké de MySQL en 2009 par les mêmes développeurs qui ont créé MySQL, après que MySQL a été acquis par Oracle Corporation. MariaDB est conçu pour être compatible avec MySQL, tout en offrant de nouvelles fonctionnalités, des performances améliorées et des fonctionnalités remplacées qui n'étaient pas disponibles dans les versions gratuites de MySQL.
 
+
 ## Fonctionnement Général
 
 SQL fonctionne en analysant et en exécutant des instructions écrites dans le langage SQL. Ces instructions peuvent effectuer diverses tâches, telles que la création de tables, la mise à jour de données, la récupération de données, et la gestion des transactions. SQL utilise des déclarations pour définir des structures de données, des requêtes pour récupérer des données et des commandes pour gérer les données et les transactions.
+
 
 ## Moteurs de Table MySQL
 
@@ -28,11 +55,14 @@ MySQL utilise ce qu'on appelle des "moteurs de stockage" pour gérer la manière
 
 Les moteurs de table de MySQL permettent aux utilisateurs de choisir la meilleure façon de stocker et de gérer leurs données en fonction de leurs besoins spécifiques, ce qui rend ce système extrêmement flexible et puissant pour une large gamme d'applications.
 
+
 ## Documentation SQL : Guillemets et Syntaxe
+
 
 ### Introduction
 
 En SQL, l'usage des guillemets simples ('), doubles ("), et des accents graves (`) varie selon le système de gestion de base de données (SGBD) utilisé. Ces caractères sont utilisés pour identifier les éléments de la base de données, comme les noms de tables et de colonnes, et pour délimiter les chaînes de caractères.
+
 
 ### Guillemets simples ('')
 
@@ -41,6 +71,7 @@ En SQL, l'usage des guillemets simples ('), doubles ("), et des accents graves (
   ```sql
   SELECT * FROM utilisateurs WHERE nom = 'Dupont';
   ```
+
 
 ### Guillemets doubles ("")
 
@@ -51,6 +82,7 @@ En SQL, l'usage des guillemets simples ('), doubles ("), et des accents graves (
   ```
 - **Remarque :** Tous les SGBD ne suivent pas cette convention. Par exemple, MySQL utilise les guillemets doubles comme des guillemets simples pour délimiter les chaînes, à moins que le mode ANSI_QUOTES soit activé.
 
+
 ### Accents graves (`)
 
 - **Usage :** Utilisés spécifiquement dans MySQL et quelques autres SGBD pour entourer les identifiants.
@@ -59,6 +91,7 @@ En SQL, l'usage des guillemets simples ('), doubles ("), et des accents graves (
   SELECT `nomColonne` FROM `maTable` WHERE `nomColonne` = 'valeur';
   ```
 - **Remarque :** Cela permet de s'assurer que les mots réservés peuvent être utilisés comme noms de table ou de colonne sans provoquer d'erreurs.
+
 
 ### Règles de syntaxe générale
 
@@ -80,132 +113,177 @@ En SQL, l'usage des guillemets simples ('), doubles ("), et des accents graves (
 ### 1. Création de la Base de Données et des Tables
 
 ```sql
--- Crée la base de données si elle n'existe pas et la sélectionne pour utilisation.
-CREATE DATABASE IF NOT EXISTS restaurant;
-USE restaurant;
+-- Supprime la base de données si elle existe.
+DROP DATABASE IF EXISTS restaurant;
+```
 
--- Crée la table Client.
-CREATE TABLE Client (
-    id_client INT PRIMARY KEY, 
+```sql
+-- Création de la base de données.
+CREATE DATABASE restaurant;
+```
+
+```sql
+-- Sélection de la base.
+USE restaurant;
+```
+
+```sql
+-- Création de la table client.
+CREATE TABLE client (
+    id_client INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
     nom VARCHAR(50), 
     prenom VARCHAR(50), 
     email VARCHAR(100)
 );
+```
 
--- Crée la table Commande.
-CREATE TABLE Commande (
-    id_commande INT PRIMARY KEY, 
+```sql
+-- Création de la table commande.
+CREATE TABLE commande (
+    id_commande INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
     id_client INT, 
     date_commande DATE, 
     total DECIMAL(10, 2), 
-    FOREIGN KEY (id_client) REFERENCES Client(id_client)
+    FOREIGN KEY (id_client) REFERENCES client(id_client)
 );
+```
 
--- Crée la table Plat.
-CREATE TABLE Plat (
-    id_plat INT PRIMARY KEY, 
+```sql
+-- Création de la table categorie.
+CREATE TABLE categorie (
+    id_categorie INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+    nom_categorie VARCHAR(50)
+);
+```
+
+```sql
+-- Création de la table plat.
+CREATE TABLE plat (
+    id_plat INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
     nom_plat VARCHAR(50), 
     id_categorie INT, 
     prix DECIMAL(10, 2), 
-    FOREIGN KEY (id_categorie) REFERENCES Categorie(id_categorie)
+    FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
 );
+```
 
--- Suppression puis recréation de la table Categorie.
-DROP TABLE IF EXISTS Categorie;
-CREATE TABLE Categorie (
-    id_categorie INT PRIMARY KEY, 
-    nom_categorie VARCHAR(50)
-);
+```sql
+-- Données pour la table `client`
+INSERT INTO client (nom, prenom, email) VALUES
+('Martin', 'Lucie', 'lucie.martin@example.com'),
+('Bernard', 'Julien', 'julien.bernard@example.com'),
+('Kuong', 'Émilie', 'emilie.kuong@example.com'),
+('Petit', 'Sophie', 'sophie.petit@example.com'),
+('Robert', 'Christophe', 'christophe.robert@example.com');
+```
 
+```sql
+-- Données pour la table `categorie`
+INSERT INTO categorie (nom_categorie) VALUES
+('Entrée'),
+('Plat principal'),
+('Dessert'),
+('Boisson');
+```
 
--- Données pour la table `Client`
+```sql
+-- Données pour la table `plat`
+INSERT INTO plat (nom_plat, id_categorie, prix) VALUES
+('Salade Niçoise',		(SELECT categorie.id_categorie FROM categorie where categorie.nom_categorie = 'Entrée'),		12.50),
+('Steak Frites',		(SELECT categorie.id_categorie FROM categorie where categorie.nom_categorie = 'Plat principal'),18.90),
+('Mousse au Chocolat',	(SELECT categorie.id_categorie FROM categorie where categorie.nom_categorie = 'Dessert'),		6.50),
+('Poulet Basquaise',	(SELECT categorie.id_categorie FROM categorie where categorie.nom_categorie = 'Plat principal'),16.50),
+('Tarte Tatin',			(SELECT categorie.id_categorie FROM categorie where categorie.nom_categorie = 'Dessert'),		8.00),
+('Limonade Maison',		(SELECT categorie.id_categorie FROM categorie where categorie.nom_categorie = 'Boisson'),		3.75);
+```
 
-INSERT INTO Client (id_client, nom, prenom, email) VALUES
-(1, 'Martin', 'Lucie', 'lucie.martin@example.com'),
-(2, 'Bernard', 'Julien', 'julien.bernard@example.com'),
-(3, 'Thomas', 'Émilie', 'emilie.thomas@example.com'),
-(4, 'Petit', 'Sophie', 'sophie.petit@example.com'),
-(5, 'Robert', 'Christophe', 'christophe.robert@example.com');
+```sql
+-- Données pour la table `commande`
+INSERT INTO commande (id_client, date_commande, total) VALUES
+((SELECT client.id_client FROM client where client.email = 'lucie.martin@example.com'),		'2023-09-01',45.90),
+((SELECT client.id_client FROM client where client.email = 'julien.bernard@example.com'),	'2023-09-02',24.25),
+((SELECT client.id_client FROM client where client.email = 'emilie.kuong@example.com'),		'2023-09-03',19.75),
+((SELECT client.id_client FROM client where client.email = 'sophie.petit@example.com'),		'2023-09-04',34.75),
+((SELECT client.id_client FROM client where client.email = 'christophe.robert@example.com'),'2023-09-05',22.50);
 
-
--- Données pour la table `Categorie`
-
-INSERT INTO Categorie (id_categorie, nom_categorie) VALUES
-(1, 'Entrée'),
-(2, 'Plat principal'),
-(3, 'Dessert'),
-(4, 'Boisson');
-
-
--- Données pour la table `Plat`
-
-INSERT INTO Plat (id_plat, nom_plat, id_categorie, prix) VALUES
-(1, 'Salade Niçoise', 1, 12.50),
-(2, 'Steak Frites', 2, 18.90),
-(3, 'Mousse au Chocolat', 3, 6.50),
-(4, 'Poulet Basquaise', 2, 16.50),
-(5, 'Tarte Tatin', 3, 8.00),
-(6, 'Limonade Maison', 4, 3.75);
-
-
--- Données pour la table `Commande`
-
-INSERT INTO Commande (id_commande, id_client, date_commande, total) VALUES
-(1, 1, '2023-09-01', 45.90),
-(2, 2, '2023-09-02', 24.25),
-(3, 3, '2023-09-03', 19.75),
-(4, 4, '2023-09-04', 34.75),
-(5, 5, '2023-09-05', 22.50);
 ```
 
 
 ### 2. Requêtes SQL
 
 ```sql
--- 1. Sélectionner toutes les colonnes de la table Client.
-SELECT * FROM Client;
+-- 1. Sélectionne toutes les colonnes de la table client.
+SELECT * FROM client;
+```
 
--- 2. Sélectionner le nom et l'email des clients dont le nom commence par "A".
-SELECT nom, email FROM Client WHERE nom LIKE 'A%';
+```sql
+-- 2. Sélectionne le nom et l'email des clients dont le nom commence par "A".
+SELECT nom, email FROM client WHERE nom LIKE 'A%';
+```
 
--- 3. Sélectionner le nombre total de clients.
-SELECT COUNT(*) AS nombre_clients FROM Client;
+```sql
+-- 3. Sélectionne le nombre total de clients.
+SELECT COUNT(*) AS nombre_clients FROM client;
+```
 
--- 4. Sélectionner le plat le moins cher.
-SELECT * FROM Plat ORDER BY prix LIMIT 1;
+```sql
+-- 4. Sélectionne le plat le moins cher.
+SELECT * FROM plat ORDER BY prix LIMIT 1;
+```
 
--- 5. Sélectionner les plats dont le prix est supérieur à 10 euros et dans une catégorie spécifique.
-SELECT * FROM Plat WHERE prix > 10 AND id_categorie = (SELECT id_categorie FROM Categorie WHERE nom_categorie = 'Plat principal');
+```sql
+-- 5. Sélectionne les plats dont le prix est supérieur à 10 euros et dans une catégorie spécifique.
+SELECT * FROM plat WHERE prix > 10 AND id_categorie = (SELECT id_categorie FROM categorie WHERE nom_categorie = 'plat principal');
+```
 
--- 6. Sélectionner les commandes effectuées par un client donné (ID 1).
-SELECT * FROM Commande WHERE id_client = 1;
+```sql
+-- 6. Sélectionne les commandes effectuées par un client donné (ID 1).
+SELECT * FROM commande WHERE id_client = 1;
+```
 
--- 7. Sélectionner le montant total de toutes les commandes.
-SELECT SUM(total) AS montant_total FROM Commande;
+```sql
+-- 7. Sélectionne le montant total de toutes les commandes.
+SELECT SUM(total) AS montant_total FROM commande;
+```
 
--- 8. Mettre à jour le nom d'un client (ID 1).
-UPDATE Client SET nom = 'Nouveau Nom' WHERE id_client = 1;
+```sql
+-- 8. Met à jour le nom d'un client (ID 1).
+UPDATE client SET nom = 'Nouveau Nom' WHERE id_client = 1;
+```
 
--- 9. Insérer un nouveau plat dans la table Plat.
-INSERT INTO Plat (nom_plat, prix, id_categorie) VALUES ('Nouveau Plat', 15.99, (SELECT id_categorie FROM Categorie WHERE nom_categorie = 'Entrée'));
+```sql
+-- 9. Insère un nouveau plat dans la table plat.
+INSERT INTO plat (nom_plat, prix, id_categorie) VALUES ('Nouveau plat', 15.99, (SELECT id_categorie FROM categorie WHERE nom_categorie = 'Entrée'));
+```
 
--- 10. Supprimer un plat de la table Plat (ID 1).
-DELETE FROM Plat WHERE id_plat = 1;
+```sql
+-- 10. Supprime un plat de la table plat (ID 1).
+DELETE FROM plat WHERE id_plat = 1;
+```
 
--- 11. Sélectionner les plats en ordre décroissant de prix.
-SELECT * FROM Plat ORDER BY prix DESC;
+```sql
+-- 11. Sélectionne les plats en ordre décroissant de prix.
+SELECT * FROM plat ORDER BY prix DESC;
+```
 
--- 12. Sélectionner les clients ayant passé une commande avec un montant supérieur à 50 euros.
-SELECT DISTINCT c.* FROM Client c INNER JOIN Commande cm ON c.id_client = cm.id_client WHERE cm.total > 50;
+```sql
+-- 12. Sélectionne les clients ayant passé une commande avec un montant supérieur à 50 euros.
+SELECT DISTINCT c.* FROM client c INNER JOIN commande cm ON c.id_client = cm.id_client WHERE cm.total > 50;
+```
 
--- 13. Sélectionner les plats avec leur catégorie respective.
-SELECT p.nom_plat AS plat, c.nom_categorie AS categorie FROM Plat p INNER JOIN Categorie c ON p.id_categorie = c.id_categorie;
+```sql
+-- 13. Sélectionne les plats avec leur catégorie respective.
+SELECT p.nom_plat AS plat, c.nom_categorie AS categorie FROM plat p INNER JOIN categorie c ON p.id_categorie = c.id_categorie;
+```
 
--- 14. Sélectionner les clients n'ayant jamais passé de commande.
-SELECT * FROM Client WHERE id_client NOT IN (SELECT DISTINCT id_client FROM Commande);
+```sql
+-- 14. Sélectionne les clients n'ayant jamais passé de commande.
+SELECT * FROM client WHERE id_client NOT IN (SELECT DISTINCT id_client FROM commande);
+```
 
--- 15. Sélectionner les plats et leur nombre de commandes respectif, triés par nombre de commandes décroissant.
-SELECT p.nom_plat AS plat, COUNT(cm.id_commande) AS nombre_commandes FROM Plat p LEFT JOIN Commande cm ON p.id_plat = cm.id_plat GROUP BY p.id_plat ORDER BY nombre_commandes DESC;
+```sql
+-- 15. Sélectionne les plats et leur nombre de commandes respectif, triés par nombre de commandes décroissant.
+SELECT p.nom_plat AS plat, COUNT(cm.id_commande) AS nombre_commandes FROM plat p LEFT JOIN commande cm ON p.id_plat = cm.id_plat GROUP BY p.id_plat ORDER BY nombre_commandes DESC;
 ```
 
 
@@ -215,92 +293,109 @@ SELECT p.nom_plat AS plat, COUNT(cm.id_commande) AS nombre_commandes FROM Plat p
 ### Jointures Variées (INNER JOIN, LEFT JOIN, RIGHT JOIN, CROSS JOIN)
 ```sql
 -- INNER JOIN récupère les enregistrements correspondants dans les deux tables.
-SELECT Client.nom, Commande.date_commande
-FROM Client
-INNER JOIN Commande ON Client.id_client = Commande.id_client;
+SELECT client.nom, commande.date_commande
+FROM client
+INNER JOIN commande ON client.id_client = commande.id_client;
+```
 
+```sql
 -- LEFT JOIN inclut tous les enregistrements de la table de gauche et les correspondants de la table de droite.
-SELECT Client.nom, Commande.date_commande
-FROM Client
-LEFT JOIN Commande ON Client.id_client = Commande.id_client;
+SELECT client.nom, commande.date_commande
+FROM client
+LEFT JOIN commande ON client.id_client = commande.id_client;
+```
 
+```sql
 -- RIGHT JOIN n'est pas supporté dans toutes les bases de données, donc vérifiez la compatibilité.
 -- Elle inclut tous les enregistrements de la table de droite et les correspondants de la table de gauche.
 -- Si votre système de gestion de base de données ne supporte pas RIGHT JOIN, utilisez LEFT JOIN avec l'ordre des tables inversé.
-SELECT Commande.date_commande, Client.nom
-FROM Commande
-LEFT JOIN Client ON Commande.id_client = Client.id_client;
+SELECT commande.date_commande, client.nom
+FROM commande
+LEFT JOIN client ON commande.id_client = client.id_client;
+```
 
+```sql
 -- CROSS JOIN produit le produit cartésien des deux tables.
-SELECT Client.nom, Plat.nom_plat
-FROM Client
-CROSS JOIN Plat;
+SELECT client.nom, plat.nom_plat
+FROM client
+CROSS JOIN plat;
 ```
 
 
 ### Fonctions SQL Avancées (GROUP BY, HAVING, DISTINCT)
 ```sql
 -- Utilisation de GROUP BY avec HAVING pour filtrer les résultats.
-SELECT Categorie.nom_categorie, COUNT(*) AS Nombre_Plats
-FROM Plat
-JOIN Categorie ON Plat.id_categorie = Categorie.id_categorie
-GROUP BY Categorie.nom_categorie
+SELECT categorie.nom_categorie, COUNT(*) AS Nombre_plats
+FROM plat
+JOIN categorie ON plat.id_categorie = categorie.id_categorie
+GROUP BY categorie.nom_categorie
 HAVING COUNT(*) > 5;
+```
 
+```sql
 -- Utilisation de DISTINCT pour éviter les doublons.
-SELECT DISTINCT Client.prenom
-FROM Client;
+SELECT DISTINCT client.prenom
+FROM client;
 ```
 
 
 ### Fonctions de Date et d'Heure
 ```sql
 -- Extrait l'année de la date de commande.
-SELECT id_commande, YEAR(date_commande) AS Annee_Commande
-FROM Commande;
+SELECT id_commande, YEAR(date_commande) AS Annee_commande
+FROM commande;
+```
 
+```sql
 -- Calcule la différence en jours entre deux dates.
-SELECT DATEDIFF(CURDATE(), date_commande) AS Jours_Depuis_Commande
-FROM Commande;
+SELECT DATEDIFF(CURDATE(), date_commande) AS Jours_Depuis_commande
+FROM commande;
 ```
 
 
 ### Utilisation de Fonctions d'Aggrégation (SUM, AVG, MIN, MAX)
 ```sql
 -- Calcule le total des ventes, la commande moyenne, le montant maximum et minimum des commandes.
-SELECT SUM(total) AS Total_Ventes, AVG(total) AS Moyenne_Commande, MIN(total) AS Commande_Min, MAX(total) AS Commande_Max
-FROM Commande;
+SELECT SUM(total) AS Total_Ventes, AVG(total) AS Moyenne_commande, MIN(total) AS commande_Min, MAX(total) AS commande_Max
+FROM commande;
 ```
 
 
 ### Sous-requêtes et Opérations sur les Sets (IN, NOT IN, EXISTS)
 ```sql
 -- Utilise IN pour sélectionner les clients ayant passé une commande de plus de 100 euros.
-SELECT nom, prenom FROM Client
-WHERE id_client IN (SELECT id_client FROM Commande WHERE total > 100);
+SELECT nom, prenom FROM client
+WHERE id_client IN (SELECT id_client FROM commande WHERE total > 100);
+```
 
+```sql
 -- Utilise EXISTS pour vérifier l'existence de certaines commandes.
-SELECT nom FROM Client c
-WHERE EXISTS (SELECT 1 FROM Commande co WHERE co.id_client = c.id_client AND total > 150);
+SELECT nom FROM client c
+WHERE EXISTS (SELECT 1 FROM commande co WHERE co.id_client = c.id_client AND total > 150);
 ```
 
 
 ### Insertions, Mises à jour, et Suppressions de données
 ```sql
 -- Insertion d'un nouveau client.
-INSERT INTO Client (id_client, nom, prenom, email) VALUES (101, 'Dupont', 'Jean', 'jean.dupont@example.com');
+INSERT INTO client (nom, prenom, email) VALUES ('Dupont', 'Jean', 'jean.dupont@example.com');
+```
 
+```sql
 -- Mise à jour de l'email d'un client.
-UPDATE Client SET email = 'nouveau.email@example.com' WHERE id_client = 101;
+UPDATE client SET email = 'nouveau.email@example.com' WHERE id_client = 101;
+```
 
+```sql
 -- Suppression d'un client.
-DELETE FROM Client WHERE id_client = 101;
+DELETE FROM client WHERE id_client = 101;
 ```
 
 
 ### Transactions (START TRANSACTION, COMMIT, ROLLBACK)
 
 Les transactions en SQL sont des séquences d'opérations de gestion de base de données qui sont traitées de manière logique et indivisible. Elles sont essentielles pour maintenir l'intégrité des données, en particulier dans les environnements où plusieurs utilisateurs ou applications accèdent et modifient simultanément la base de données. Une transaction en SQL commence par une commande de démarrage et se termine par un commit ou un rollback.
+
 
 #### Principe des Transactions
 
@@ -312,6 +407,7 @@ Les transactions en SQL sont des séquences d'opérations de gestion de base de 
 
 4. **Durabilité** : Une fois qu'une transaction a été validée (commit), les modifications qu'elle a introduites dans la base de données doivent être permanentes, même en cas de panne du système.
 
+
 #### Exemple de Transaction en SQL
 
 Pour illustrer comment les transactions fonctionnent en pratique, imaginons une base de données de gestion de comptes bancaires où les transactions sont cruciales pour assurer que tous les transferts de fonds sont effectués de manière sécurisée et cohérente.
@@ -319,14 +415,20 @@ Pour illustrer comment les transactions fonctionnent en pratique, imaginons une 
 ```sql
 -- Démarrage de la transaction
 START TRANSACTION;
+```
 
+```sql
 -- Tentative de transfert de 100 euros du compte 001 vers le compte 002
 -- Débit du compte 001
 UPDATE Comptes SET solde = solde - 100 WHERE numero_compte = '001';
+```
 
+```sql
 -- Crédit du compte 002
 UPDATE Comptes SET solde = solde + 100 WHERE numero_compte = '002';
+```
 
+```sql
 -- Vérification que le compte débiteur a suffisamment de fonds (ne doit pas être négatif)
 SELECT solde INTO @solde FROM Comptes WHERE numero_compte = '001';
 IF @solde < 0 THEN
@@ -337,6 +439,7 @@ ELSE
     COMMIT;
 END IF;
 ```
+
 
 #### Commentaires sur l'Exemple
 
